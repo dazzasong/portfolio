@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, CardMedia, Link, List, ListItem, Stack, Typography } from "@mui/material";
+import { Box, Link, List, ListItem, Stack, Typography } from "@mui/material";
 import PortFolioCard from "./PortfolioCard";
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
           <ListItem><Link href="">Snake 2.0</Link></ListItem>
           <ListItem>2D RPG game in Unity to release on Steam (IN DEVELOPMENT)</ListItem>
         </List>
-        <Typography>I have also made a bunch of calculation tools for my father to use for his business, although I will not show them because they are for staff and customer use only.</Typography>
+        <Typography>I have also made a bunch of calculation tools for my father to use for his <Link href="https://www.kingsbottle.com.au">business</Link>, although I will not show them because they are for staff and customer use only.</Typography>
       </Box>
       <PortFolioCard />
     </Stack>
