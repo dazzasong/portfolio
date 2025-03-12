@@ -1,6 +1,11 @@
-import { Box, Card, CardContent, CardHeader, CardMedia, Link, Typography } from "@mui/material";
+import { Box, Card, CardContent, CardHeader, CardMedia, Link, Stack, Typography } from "@mui/material";
 
 export default function PortFolioCard() {
+  const socials = [
+    {social: "Facebook", link: "https://www.facebook.com/profile.php?id=100082634944093"},
+    {social: "Twitter", link: "https://x.com/dazzasong"},
+    {social: "Instagram", link: "https://www.instagram.com/dazzasong"}
+  ];
   
   return (
     <Box width={360}>
@@ -8,18 +13,20 @@ export default function PortFolioCard() {
         <CardHeader title="Darren Song" subheader="Age 14" />
         <CardMedia component="img" image="face.png" height={300} />
         <CardContent>
-          <Typography fontWeight="bold">-- INFO --</Typography>
-          <Typography>Darren Song. Male, 14. Lives in Australia. Hobbies are gaming, music and cooking.</Typography>
-          <Typography fontWeight="bold">-- SOCIAL --</Typography>
-          <Typography>
-            <Link href="https://www.facebook.com/profile.php?id=100082634944093">Facebook</Link>
-          </Typography>
-          <Typography>
-            <Link href="https://x.com/dazzasong">Twitter</Link>
-          </Typography>
-          <Typography>
-            <Link href="https://www.instagram.com/dazzasong/">Instagram</Link>
-          </Typography>
+          <Stack spacing={1}>
+            <Box>
+              <Typography fontWeight="bold">-- INFO --</Typography>
+              <Typography>Darren Song. Male, 14. Lives in Australia. Hobbies are gaming, music and cooking.</Typography>
+            </Box>
+            <Box>
+              <Typography fontWeight="bold">-- SOCIAL --</Typography>
+              {socials.map((obj) => (
+                <Typography>
+                  <Link href={obj.link}>{obj.social}</Link>
+                </Typography>
+              ))}
+            </Box>
+          </Stack>
         </CardContent>
       </Card>
     </Box>
