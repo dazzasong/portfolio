@@ -1,10 +1,11 @@
+import { Facebook, Instagram, Twitter } from "@mui/icons-material";
 import { Box, Card, CardContent, CardHeader, CardMedia, Link, Stack, Typography } from "@mui/material";
 
 export default function PortFolioCard() {
   const socials = [
-    {social: "Facebook", link: "https://www.facebook.com/profile.php?id=100082634944093"},
-    {social: "Twitter", link: "https://x.com/dazzasong"},
-    {social: "Instagram", link: "https://www.instagram.com/dazzasong"}
+    {name: "Facebook", link: "https://www.facebook.com/profile.php?id=100082634944093", icon: <Facebook />},
+    {name: "Twitter", link: "https://x.com/dazzasong", icon: <Twitter htmlColor="black" />},
+    {name: "Instagram", link: "https://www.instagram.com/dazzasong", icon: <Instagram color="secondary" />}
   ];
   
   return (
@@ -22,7 +23,7 @@ export default function PortFolioCard() {
               <Typography fontWeight="bold">-- SOCIAL --</Typography>
               {socials.map((obj) => (
                 <Typography>
-                  <Link href={obj.link}>{obj.social}</Link>
+                  <Link href={obj.link}>{obj.name} {obj.icon}</Link>
                 </Typography>
               ))}
             </Box>
