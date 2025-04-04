@@ -11,13 +11,13 @@ export default function PortFolioCard() {
   return (
     <Box width={360}>
       <Card>
-        <CardHeader title="Dazza" subheader="Age 14" />
-        <CardMedia component="img" image="face.png" height={300} />
+        <CardHeader title="Darren Song" subheader="Age 14" />
+        <CardMedia component="img" image="me.png" height={300} />
         <CardContent>
           <Stack spacing={1}>
             <Box>
               <Typography fontWeight="bold">-- INFO --</Typography>
-              <Typography>Real name is Darren Song. Male, 14. Lives in Australia. Hobbies are gaming, music and cooking.</Typography>
+              <Typography>Aka Dazza. Male, 14. Lives in Australia. Hobbies are gaming and creating.</Typography>
             </Box>
             <Box>
               <Typography fontWeight="bold">-- SOCIAL --</Typography>

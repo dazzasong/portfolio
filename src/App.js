@@ -1,9 +1,10 @@
 import { Box, Link, List, ListItem, ListItemText, Stack, Typography } from "@mui/material";
 import PortFolioCard from "./PortfolioCard";
 import Note from "./Note";
+import Website from "./Website";
 
 function App() {
-  const languages = ["Python", "C#", "Javascript", "Luau"];
+  const languages = ["Python", "C#", "Javascript"];
   const websites = [
     {name: "Chess", link: ""},
     {name: "Snake 2.0", link: ""},
@@ -11,10 +12,10 @@ function App() {
   ];
 
   return (
-    <Stack direction="row">
+    <Stack direction="row" justifyContent="space-between">
       <Box>
-        <Typography variant="h4" fontWeight="bold">Welcome to my portfolio!</Typography>
-        <Typography>I have experience in the following languages:</Typography>
+        <Typography variant="h4" fontWeight="bold">Hi.</Typography>
+        <Typography>I use:</Typography>
         <List dense>
           {languages.map((l) => (
             <ListItem>
@@ -23,14 +24,9 @@ function App() {
           ))}
         </List>
         <Typography>These are the websites/games I have made so far and some I'm still working on:</Typography>
-        <List>
-          {websites.map((web) => (
-            <ListItem>
-              <ListItemText><Link href={web.link}>{web.name}</Link></ListItemText>
-            </ListItem>
-          ))}
-        </List>
-        <Typography>I have also made a bunch of calculation tools for my father to use for his <Link href="https://www.kingsbottle.com.au">business</Link>, although I will not show them because they are for staff and customer use only.</Typography>
+        <Stack direction="row">
+          <Website img="snake2.0.png" link="https://snaketwo.netlify.app/" />
+        </Stack>
         <Typography>I have created a notepad below, feel free to use it! (Not saved for next time)</Typography>
         <Note />
       </Box>
