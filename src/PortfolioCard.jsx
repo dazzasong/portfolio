@@ -23,7 +23,7 @@ export default function PortFolioCard() {
               <Typography fontWeight="bold">-- SOCIAL --</Typography>
               {socials.map((obj) => (
                 <Typography>
-                  <Link href={obj.link}>{obj.name} {obj.icon}</Link>
+                  <Link href={obj.link} target="_blank" rel="noopener">{obj.name} {obj.icon}</Link>
                 </Typography>
               ))}
             </Box>
