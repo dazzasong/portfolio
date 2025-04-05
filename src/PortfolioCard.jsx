@@ -3,29 +3,30 @@ import { Box, Card, CardContent, CardHeader, CardMedia, Link, Stack, Typography 
 
 export default function PortFolioCard() {
   const socials = [
-    {name: "Facebook", link: "https://www.facebook.com/profile.php?id=100082634944093", icon: <Facebook />},
-    {name: "Twitter", link: "https://x.com/dazzasong", icon: <Twitter htmlColor="black" />},
+    {name: "Facebook", link: "https://www.facebook.com/profile.php?id=100082634944093", icon: <Facebook color="primary" />},
+    {name: "Twitter", link: "https://x.com/dazzasong", icon: <Twitter color="info" />},
     {name: "Instagram", link: "https://www.instagram.com/dazzasong", icon: <Instagram color="secondary" />}
   ];
   
   return (
-    <Box width={360}>
+    <Box width={300}>
       <Card>
         <CardHeader title="Darren Song" subheader="Age 14" />
-        <CardMedia component="img" image="me.png" height={300} />
+        <CardMedia component="img" image="me.png" height={240} />
         <CardContent>
           <Stack spacing={1}>
             <Box>
               <Typography fontWeight="bold">-- INFO --</Typography>
-              <Typography>Aka Dazza. Male, 14. Lives in Australia. Hobbies are gaming and creating.</Typography>
+              <Typography>Male, 14. Lives in Australia. Hobbies are gaming and creating.</Typography>
             </Box>
             <Box>
               <Typography fontWeight="bold">-- SOCIAL --</Typography>
-              {socials.map((obj) => (
-                <Typography>
-                  <Link href={obj.link} target="_blank" rel="noopener">{obj.name} {obj.icon}</Link>
-                </Typography>
-              ))}
+                {socials.map((obj) => (
+                  <Stack direction="row" spacing={1}>
+                    <Link href={obj.link} target="_blank" rel="noopener">{obj.name}</Link>
+                    {obj.icon}
+                  </Stack>
+                ))}
             </Box>
           </Stack>
         </CardContent>

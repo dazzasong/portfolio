@@ -1,6 +1,6 @@
 import { Box, Card, CardActionArea, CardMedia } from "@mui/material";
 
-export default function Website({ img, link }) {
+export default function WebsiteCard({ img, link }) {
   return (
     <Box width={200}>
       <Card>
