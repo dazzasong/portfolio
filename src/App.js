@@ -1,4 +1,4 @@
-import { Box, Divider, Stack, Typography } from "@mui/material";
+import { Box, Divider, Link, Stack, Typography } from "@mui/material";
 import Header from "./Header";
 import PortFolioCard from "./PortfolioCard";
 import WebsiteCard from "./WebsiteCard";
@@ -10,7 +10,7 @@ function App() {
   ];
 
   return (
-    <Box>
+    <Box sx={{ userSelect: "none" }}>
       <Header />
       <Stack direction="row" justifyContent="space-between" m={1}>
         <Box>
@@ -29,6 +29,9 @@ function App() {
               {websites.map((web) => <WebsiteCard img={web.img} link={web.link} />)}
             </Stack>
           </Stack>
+          <Divider variant="middle" sx={{ marginY: 4 }} />
+          <Typography fontWeight="bold" fontStyle="italic">More games and stuff to come. Thank you!</Typography>
+          <Typography>Have suggestions? --&gt; Email <Link href="mailto:dazzasong@gmail.com">dazzasong@gmail.com</Link></Typography>
         </Box>
         <PortFolioCard />
       </Stack>

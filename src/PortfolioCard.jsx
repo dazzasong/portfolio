@@ -12,12 +12,12 @@ export default function PortFolioCard() {
     <Box width={300}>
       <Card>
         <CardHeader title="Darren Song" subheader="Age 14" />
-        <CardMedia component="img" image="me.png" height={240} />
+        <CardMedia component="img" image="me.png" height={300} />
         <CardContent>
           <Stack spacing={1}>
             <Box>
               <Typography fontWeight="bold">-- INFO --</Typography>
-              <Typography>Male, 14. Lives in Australia. Hobbies are gaming and creating.</Typography>
+              <Typography>Male, 14. Lives in Australia. Enjoys gaming, coding and listening to music.</Typography>
             </Box>
             <Box>
               <Typography fontWeight="bold">-- SOCIAL --</Typography>
