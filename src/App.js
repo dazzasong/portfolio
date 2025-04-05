@@ -5,9 +5,9 @@ import WebsiteCard from "./WebsiteCard";
 
 function App() {
   const websites = [
-    {img: "Chess", link: ""},
-    {img: "snake2.0.png", link: "https://snaketwo.netlify.app/"},
-    {img: "Game to release on Steam", link: ""}
+    {img: "", link: ""},
+    {img: "icons/snake2.0-icon.png", link: "https://snaketwo.netlify.app/"},
+    {img: "icons/chess-icon.png", link: "https://singleplayerchess.netlify.app/"}
   ];
 
   return (
@@ -25,7 +25,7 @@ function App() {
           <Typography>The languages I use are Python, Javascript, and C#. The games below were made using Javascript.</Typography>
           <Divider variant="middle" sx={{ marginY: 4 }} />
           <Stack alignItems="center" spacing={4}>
-            <Typography variant="h5"><u>Games</u></Typography>
+            <Typography variant="h5" fontWeight="bold"><u>Games</u></Typography>
             <Stack direction="row" spacing={2}>
               {websites.map((web) => <WebsiteCard img={web.img} link={web.link} />)}
             </Stack>
