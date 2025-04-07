@@ -1,4 +1,4 @@
-import { Stack } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 
 export default function TheButton() {
   const press = () => {
@@ -7,6 +7,8 @@ export default function TheButton() {
       case 0:
         window.close()
         break;
+      case 1:
+        alert("We have detected a virus on your device. Please install Microsoft Virus Defender.")
       default:
         return;
     }
@@ -14,7 +16,9 @@ export default function TheButton() {
 
   return (
     <Stack justifyContent="center" alignItems="center" height="100vh">
-      <img src="the-button-assets/imgs/button.png" alt="red button" width={150} onClick={press} />
+      <Box sx={{ cursor: "grab" }}>
+        <img src="the-button-assets/imgs/button.png" alt="red button" width={150} onClick={press} />
+      </Box>
     </Stack>
   )
 }
