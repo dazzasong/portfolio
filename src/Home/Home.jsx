@@ -1,11 +1,16 @@
+import { useEffect } from "react";
 import { Box, Divider, Link, Stack, Typography } from "@mui/material";
 import Header from "./Header";
 import PortFolioCard from "./PortfolioCard";
 import WebsiteCard from "./WebsiteCard";
 
 export default function Home() {
+  useEffect(() => {
+    document.body.style.backgroundColor = "gold";
+  }, []);
+  
   const websites = [
-    {img: "icons/snake2.0.png", to: "https://snaketwo.netlify.app/"},
+    {img: "icons/snake2.0.png", to: "/snake2"},
     {img: "icons/chess.png", to: "https://singleplayerchess.netlify.app/"},
     {img: "icons/the-button.png", to: "/thebutton"}
   ];
