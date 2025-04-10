@@ -1,12 +1,21 @@
-import { Stack, Typography } from "@mui/material";
-import WebsiteCard from "./WebsiteCard";
+import { Card, CardActionArea, CardMedia, Stack, Typography } from "@mui/material";
+
+function WebsiteCard({ img, to }) {
+  return (
+    <Card>
+      <CardActionArea href={to}>
+        <CardMedia component="img" image={img} height={200} />
+      </CardActionArea>
+    </Card>
+  )
+}
 
 export default function WebsiteList() {
   const websites = [
-    {img: "icons/snake2.0.png", to: "/snake2"},
+    {img: "icons/snake2.0.png", to: "snake2"},
     {img: "icons/chess.png", to: "https://singleplayerchess.netlify.app/"},
-    {img: "icons/pizza-help.png", to: "/pizza-help"},
-    {img: "icons/the-button.png", to: "/thebutton"}
+    {img: "icons/pizza-help.png", to: "pizzahelp"},
+    {img: "icons/the-button.png", to: "thebutton"}
   ];
 
   return (

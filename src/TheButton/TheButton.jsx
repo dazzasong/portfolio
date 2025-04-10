@@ -26,7 +26,7 @@ function TheButton() {
       default:
         return;
     }
-  }
+  };
 
   return (
     <Box>

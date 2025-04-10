@@ -1,6 +1,6 @@
 import { Box, Divider, Link, Typography } from "@mui/material";
 import Info from "./Info/Info"
-import WebsiteList from "./WebsiteList/WebsiteList";
+import WebsiteList from "./WebsiteList";
 
 export default function MainContent() {
   return (
