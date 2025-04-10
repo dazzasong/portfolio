@@ -4,11 +4,11 @@ import { Box, Stack, Typography } from "@mui/material";
 export default function TheButton() {
   const [src, setSrc] = useState("the-button-assets/imgs/button.png");
   const [text, setText] = useState();
-  //const [bananasNum, setBananasNum] = useState(0);
+  const [bananasNum, setBananasNum] = useState(0);
 
   const press = () => {
     setText();
-    const randomInt = Math.floor(Math.random() * 3);
+    const randomInt = Math.floor(Math.random() * 4);
     switch (randomInt) {
       case 0:
         setText("Hey! That hurt!");
@@ -19,6 +19,9 @@ export default function TheButton() {
         break;
       case 2:
         alert("We have detected a virus on your device. Please install Microsoft Virus Defender.");
+        break;
+      case 3:
+        setBananasNum((prevBananasNum) => prevBananasNum + 1);
         break;
       default:
         return;
