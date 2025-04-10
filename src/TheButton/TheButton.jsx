@@ -4,7 +4,7 @@ import { Box, Stack, Typography } from "@mui/material";
 export default function TheButton() {
   const [src, setSrc] = useState("the-button-assets/imgs/button.png");
   const [text, setText] = useState();
-  const [bananasNum, setBananasNum] = useState(0);
+  //const [bananasNum, setBananasNum] = useState(0);
 
   const press = () => {
     setText();
