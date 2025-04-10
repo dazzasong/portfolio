@@ -9,10 +9,9 @@ export default function PortFolioCard() {
   ];
   
   return (
-    <Box width={300}>
+    <Box width={240}>
       <Card>
         <CardHeader title="Darren Song" subheader="Age 14" />
-        <CardMedia component="img" image="me.png" height={300} />
         <CardContent>
           <Stack spacing={1}>
             <Box>
