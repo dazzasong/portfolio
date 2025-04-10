@@ -1,5 +1,5 @@
 import { Stack, Typography } from "@mui/material";
-
+// each level has a goal of num meatballs to collect and a timer
 function LevelButton({ levelNum }) {
   return (
     <Stack

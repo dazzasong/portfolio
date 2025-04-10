@@ -12,9 +12,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="snake2" element={<Snake2 />} />
-        <Route path="pizzahelp" element={<PizzaHelp />}>
-          <Route path="levelselection" element={<LevelSelection />} />
-        </Route>
+        <Route path="pizzahelp" element={<PizzaHelp />} />
+        <Route path="pizzahelp/levelselection" element={<LevelSelection />} />
         <Route path="thebutton" element={<TheButton />} />
         <Route path="*" element={<NoPage />} />
       </Routes>
