@@ -4,6 +4,7 @@ import NoPage from "./NoPage";
 import Snake2 from "./Snake2/Snake2";
 import PizzaHelp from "./PizzaHelp/PizzaHelp";
 import LevelSelection from "./PizzaHelp/LevelSelection";
+import Settings from "./PizzaHelp/Settings";
 import TheButton from "./TheButton/TheButton";
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <Route path="snake2" element={<Snake2 />} />
         <Route path="pizzahelp" element={<PizzaHelp />} />
         <Route path="pizzahelp/levelselection" element={<LevelSelection />} />
+        <Route path="pizzahelp/settings" element={<Settings />} />
         <Route path="thebutton" element={<TheButton />} />
         <Route path="*" element={<NoPage />} />
       </Routes>
