@@ -1,5 +1,5 @@
 import { Facebook, Instagram, Twitter } from "@mui/icons-material";
-import { Box, Card, CardContent, CardHeader, CardMedia, Link, Stack, Typography } from "@mui/material";
+import { Box, Card, CardContent, CardHeader, Link, Stack, Typography } from "@mui/material";
 
 export default function PortFolioCard() {
   const socials = [

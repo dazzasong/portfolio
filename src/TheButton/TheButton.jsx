@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Box, Stack, Typography } from "@mui/material";
 
-export default function TheButton() {
+function TheButton() {
   const [src, setSrc] = useState("the-button-assets/imgs/button.png");
   const [text, setText] = useState();
-  const [bananasNum, setBananasNum] = useState(0);
+  const [numBananas, setNumBananas] = useState(0);
 
   const press = () => {
     setText();
@@ -21,7 +21,7 @@ export default function TheButton() {
         alert("We have detected a virus on your device. Please install Microsoft Virus Defender.");
         break;
       case 3:
-        setBananasNum((prevBananasNum) => prevBananasNum + 1);
+        setNumBananas((prevNumBananas) => prevNumBananas + 1);
         break;
       default:
         return;
@@ -30,7 +30,7 @@ export default function TheButton() {
 
   return (
     <Box>
-      <Typography position="absolute">Banana counter: {bananasNum}</Typography>
+      <Typography position="absolute">Banana counter: {numBananas}</Typography>
       <Stack
         justifyContent="center"
         alignItems="center"
@@ -49,3 +49,5 @@ export default function TheButton() {
     </Box>
   )
 }
+
+export default TheButton;
