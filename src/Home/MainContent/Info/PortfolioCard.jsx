@@ -16,7 +16,7 @@ export default function PortFolioCard() {
           <Stack spacing={1}>
             <Box>
               <Typography fontWeight="bold">-- INFO --</Typography>
-              <Typography>Male, 14. Lives in Australia. Enjoys gaming, coding and listening to music.</Typography>
+              <Typography>Lives in Australia. Enjoys gaming, coding and listening to music.</Typography>
             </Box>
             <Box>
               <Typography fontWeight="bold">-- SOCIAL --</Typography>
