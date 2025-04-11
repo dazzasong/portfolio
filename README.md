@@ -1,1 +1,0 @@
-Hello! Welcome to my portfolio. I am Darren Song, aka online as "dazza". I am currently 15 years of age.
