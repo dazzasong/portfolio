@@ -15,7 +15,7 @@ export default function WebsiteList() {
     {img: "icons/snake2.0.png", to: "snake2"},
     {img: "icons/chess.png", to: "https://singleplayerchess.netlify.app/"},
     {img: "icons/pizza-help.png", to: "pizzahelp", disabled: true},
-    {img: "icons/the-button.png", to: "thebutton", disabled: true}
+    {img: "icons/the-button.png", to: "thebutton", disabled: false}
   ];
 
   return (
