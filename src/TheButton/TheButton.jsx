@@ -38,7 +38,7 @@ function TheButton() {
         visible={bananaExists}
         setVisible={setBananaExists}
       />
-      <Typography position="absolute">Banana counter: {numBananas}</Typography>
+      <Typography position="absolute">Bananas collected: {numBananas}</Typography>
       <Stack
         justifyContent="center"
         alignItems="center"
