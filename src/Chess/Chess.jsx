@@ -1,11 +1,64 @@
-import { Box } from "@mui/material";
+import React from "react";
+import { Button, Stack } from "@mui/material";
+import { Flag, LocalFireDepartment, Refresh } from "@mui/icons-material";
+import Game from "./Game";
+
+const gameStartSoundEffect = new Audio("sounds/game-start.mp3");
+const gameEndSoundEffect = new Audio("sounds/game-end.mp3");
 
 function Chess() {
+  const [mode, setMode] = React.useState(0); // 0 = Initial, 1 = InGame, 2 = EndGame
+
+  let buttonText;
+  let buttonColor;
+  let startButtonIcon;
+  let endButtonIcon;
+
+  if (mode === 0) {
+    buttonText = "New game";
+    buttonColor = "green";
+    startButtonIcon = <LocalFireDepartment />;
+  } else if (mode === 1) {
+    buttonText = "Surrender";
+    buttonColor = "red";
+    endButtonIcon = <Flag />;
+    gameStartSoundEffect.play();
+  } else {
+    buttonText = "Rematch";
+    buttonColor = "orange";
+    endButtonIcon = <Refresh />;
+    gameEndSoundEffect.play();
+  }
+
+  const clickGameButton = () => {
+    if (mode === 0) setMode(1);
+    else if (mode === 1) setMode(2);
+    else setMode(1);
+  };
+
   return (
-    <Box>
-      
-    </Box>
-  )
+    <Stack bgcolor="bisque" alignItems="center">
+      <Button disableRipple disableElevation
+        onClick={clickGameButton}
+        variant="contained"
+        startIcon={startButtonIcon}
+        endIcon={endButtonIcon}
+        sx={{
+          minWidth: 220,
+          height: 75,
+          m: 4,
+          fontSize: 20,
+          fontWeight: 'bold',
+          fontFamily: 'Tilt Neon',
+          backgroundColor: buttonColor,
+          textTransform: 'none',
+        }}
+      >
+        {buttonText}
+      </Button>
+      <Game mode={mode} setMode={setMode} />
+    </Stack>
+  );
 }
 
 export default Chess;
