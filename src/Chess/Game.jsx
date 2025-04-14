@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import { Box, IconButton, Stack, Typography } from "@mui/material";
 import { Circle, CircleOutlined } from "@mui/icons-material";
 
@@ -10,7 +10,7 @@ const promoteSfx = new Audio("chess-assets/sounds/promote.mp3");
 const tenSecondsSfx = new Audio("chess-assets/sounds/tenseconds.mp3");
 
 function Timer(props) {
-  const [seconds, setSeconds] = React.useState(600);
+  const [seconds, setSeconds] = useState(600);
   let color = seconds <= 10 ? "red" : "white";
 
   React.useEffect(() => { // useEffect for timer
@@ -23,12 +23,15 @@ function Timer(props) {
   // eslint-disable-next-line
   }, [props.turn, props.mode, props.promotingSquare]);
 
-  React.useEffect(() => {if (props.mode === 1) setSeconds(600)}, [props.mode]); // Resets timer on new game
-  function formatTime(time) { // Formats time to minutes:seconds
+  React.useEffect(() => { // Resets timer on new game
+    if (props.mode === 1) setSeconds(600)
+  }, [props.mode]);
+
+  const formatTime = (time) => { // Formats time to minutes:seconds
     const minutes = Math.floor(time / 60);
     const seconds = time % 60;
     return `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
-  }
+  };
 
   React.useEffect(() => {
     if (seconds === 10) tenSecondsSfx.play();
@@ -199,22 +202,22 @@ export default function Game({ mode, setMode }) {
     ["nw", "pw", null, null, null, null, "pb", "nb"],
     ["rw", "pw", null, null, null, null, "pb", "rb"]
   ];
-  const [board, setBoard] = React.useState(initialBoard);
-  const [turn, setTurn] = React.useState(-1); // -1: White"s turn || 1: Black"s turn
-  const [whiteMoves, setWhiteMoves] = React.useState([]);
-  const [blackMoves, setBlackMoves] = React.useState([]);
-  const [pointsWhite, setPointsWhite] = React.useState(0);
-  const [pointsBlack, setPointsBlack] = React.useState(0);
-  const [whiteWins, setWhiteWins] = React.useState(0);
-  const [blackWins, setBlackWins] = React.useState(0);
-  const [scoreboardAnnouncement, setScoreboardAnnouncement] = React.useState(null);
-  const [selectedSquare, setSelectedSquare] = React.useState(null);
-  const [destinationSquares, setDestinationSquares] = React.useState(null);
-  const [castleStateWhite, setCastleStateWhite] = React.useState(0); // 0: Can castle both sides || -1: Can only castle left side || 1: Can only castle right side || 2: Cannot castle
-  const [castleStateBlack, setCastleStateBlack] = React.useState(0);
-  const [promotingSquare, setPromotingSquare] = React.useState(null);
-  const [enPassantSquare, setEnpassantSquare] = React.useState(null);
-  const [isCheckmate, setIsCheckmate] = React.useState(0);
+  const [board, setBoard] = useState(initialBoard);
+  const [turn, setTurn] = useState(-1); // -1: White"s turn || 1: Black"s turn
+  const [whiteMoves, setWhiteMoves] = useState([]);
+  const [blackMoves, setBlackMoves] = useState([]);
+  const [pointsWhite, setPointsWhite] = useState(0);
+  const [pointsBlack, setPointsBlack] = useState(0);
+  const [whiteWins, setWhiteWins] = useState(0);
+  const [blackWins, setBlackWins] = useState(0);
+  const [scoreboardAnnouncement, setScoreboardAnnouncement] = useState(null);
+  const [selectedSquare, setSelectedSquare] = useState(null);
+  const [destinationSquares, setDestinationSquares] = useState(null);
+  const [castleStateWhite, setCastleStateWhite] = useState(0); // 0: Can castle both sides || -1: Can only castle left side || 1: Can only castle right side || 2: Cannot castle
+  const [castleStateBlack, setCastleStateBlack] = useState(0);
+  const [promotingSquare, setPromotingSquare] = useState(null);
+  const [enPassantSquare, setEnpassantSquare] = useState(null);
+  const [isCheckmate, setIsCheckmate] = useState(0);
 
   const color = turn === 1 ? "b" : "w";
   const opposingColor = turn === -1 ? "b" : "w";
