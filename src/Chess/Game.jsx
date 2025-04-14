@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Box, IconButton, Stack, Typography } from "@mui/material";
 import { Circle, CircleOutlined } from "@mui/icons-material";
 
@@ -13,7 +13,7 @@ function Timer(props) {
   const [seconds, setSeconds] = useState(600);
   let color = seconds <= 10 ? "red" : "white";
 
-  React.useEffect(() => { // useEffect for timer
+  useEffect(() => { // useEffect for timer
     if ((props.promotingSquare ? props.turn !== props.timerFor : props.turn === props.timerFor) && props.mode === 1) {
       const chessTimer = setInterval(() => {
         setSeconds(prevSeconds => prevSeconds - 1);
@@ -23,7 +23,7 @@ function Timer(props) {
   // eslint-disable-next-line
   }, [props.turn, props.mode, props.promotingSquare]);
 
-  React.useEffect(() => { // Resets timer on new game
+  useEffect(() => { // Resets timer on new game
     if (props.mode === 1) setSeconds(600)
   }, [props.mode]);
 
@@ -33,7 +33,7 @@ function Timer(props) {
     return `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (seconds === 10) tenSecondsSfx.play();
     else if (seconds === 0) {
       props.setMode(2);
@@ -62,7 +62,7 @@ function MoveHistory({ whiteMoves, blackMoves }) {
   }
 
   // Everytime either whiteMoves or blackMoves update we automatically scroll to the bottom
-  React.useEffect(() => {
+  useEffect(() => {
     const scrollDiv = document.getElementById("moveContainer");
     scrollDiv.scrollTop = scrollDiv.scrollHeight;
   }, [whiteMoves, blackMoves]);
@@ -222,7 +222,7 @@ export default function Game({ mode, setMode }) {
   const color = turn === 1 ? "b" : "w";
   const opposingColor = turn === -1 ? "b" : "w";
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (mode === 1) { // if a new game starts
       setBoard(initialBoard);
       setTurn(-1);
