@@ -1,13 +1,13 @@
-import React from "react";
+import { useState } from "react";
 import { Button, Stack } from "@mui/material";
 import { Flag, LocalFireDepartment, Refresh } from "@mui/icons-material";
-import Game from "./Game";
+import Game from "./Game/Game";
 
 const gameStartSoundEffect = new Audio("sounds/game-start.mp3");
 const gameEndSoundEffect = new Audio("sounds/game-end.mp3");
 
 function Chess() {
-  const [mode, setMode] = React.useState(0); // 0 = Initial, 1 = InGame, 2 = EndGame
+  const [mode, setMode] = useState(0); // 0 = Initial, 1 = InGame, 2 = EndGame
 
   let buttonText;
   let buttonColor;

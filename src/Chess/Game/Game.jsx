@@ -1,138 +1,14 @@
 import { useEffect, useState } from "react";
 import { Box, IconButton, Stack, Typography } from "@mui/material";
 import { Circle, CircleOutlined } from "@mui/icons-material";
+import Score from "./Score";
+import SideBar from "./Sidebar/Sidebar";
 
 const moveSfx = new Audio("chess-assets/sounds/move.mp3");
 const captureSfx = new Audio("chess-assets/sounds/capture.mp3");
 const castleSfx = new Audio("chess-assets/sounds/castle.mp3");
 const checkSfx = new Audio("chess-assets/sounds/check.mp3");
 const promoteSfx = new Audio("chess-assets/sounds/promote.mp3");
-const tenSecondsSfx = new Audio("chess-assets/sounds/tenseconds.mp3");
-
-function Timer(props) {
-  const [seconds, setSeconds] = useState(600);
-  let color = seconds <= 10 ? "red" : "white";
-
-  useEffect(() => { // useEffect for timer
-    if ((props.promotingSquare ? props.turn !== props.timerFor : props.turn === props.timerFor) && props.mode === 1) {
-      const chessTimer = setInterval(() => {
-        setSeconds(prevSeconds => prevSeconds - 1);
-      }, 1000);
-      return () => clearInterval(chessTimer);
-    }
-  // eslint-disable-next-line
-  }, [props.turn, props.mode, props.promotingSquare]);
-
-  useEffect(() => { // Resets timer on new game
-    if (props.mode === 1) setSeconds(600)
-  }, [props.mode]);
-
-  const formatTime = (time) => { // Formats time to minutes:seconds
-    const minutes = Math.floor(time / 60);
-    const seconds = time % 60;
-    return `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
-  };
-
-  useEffect(() => {
-    if (seconds === 10) tenSecondsSfx.play();
-    else if (seconds === 0) {
-      props.setMode(2);
-      props.timerFor === 1 ? props.setWhiteWins(props.whiteWins + 1) : props.setBlackWins(props.blackWins + 1);
-      props.setScoreboardAnnouncement(props.timerFor === 1 ? "White wins - Time ran out" : "Black wins - Time ran out")
-    }
-  // eslint-disable-next-line
-  }, [seconds])
-
-  return (
-    <Box width={52} p={1} border="solid" borderColor={color} borderRadius={1}>
-      <Typography color={color} fontSize={20} fontWeight="bold" fontFamily="Tilt Neon">
-        {formatTime(seconds)}
-      </Typography>
-    </Box>
-  );
-}
-
-function MoveHistory({ whiteMoves, blackMoves }) {
-  function MoveBox({ move, color }) {
-    return (
-      <Typography color={color} fontFamily="Tilt Neon">
-        {move}
-      </Typography>
-    );
-  }
-
-  // Everytime either whiteMoves or blackMoves update we automatically scroll to the bottom
-  useEffect(() => {
-    const scrollDiv = document.getElementById("moveContainer");
-    scrollDiv.scrollTop = scrollDiv.scrollHeight;
-  }, [whiteMoves, blackMoves]);
-  return (
-    <Stack
-      direction="row"
-      bgcolor="grey"
-      width={120}
-      height={340}
-      px={1}
-      border="solid white"
-      overflow="auto"
-      id="moveContainer"
-      sx={{
-        scrollbarWidth: "none"
-      }}
-    >
-      <Stack width={60}>
-        {whiteMoves.map((move, index) => <MoveBox move={move} color="white" key={index} />)}
-      </Stack>
-      <Stack width={60}>
-        {blackMoves.map((move, index) => <MoveBox move={move} color="black" key={index} />)}
-      </Stack>
-    </Stack>
-  );
-}
-
-function SideBar(props) {
-  return (
-    <Stack bgcolor="#4B4847" justifyContent="space-around" p={2}>
-      <Typography color="white" fontSize={20} height={10}>
-        {props.pointsBlack > props.pointsWhite ? `+${props.pointsBlack - props.pointsWhite}` : null}
-      </Typography>
-      <Timer timerFor={1} turn={props.turn} mode={props.mode} setMode={props.setMode} whiteWins={props.whiteWins} blackWins={props.blackWins} setWhiteWins={props.setWhiteWins} setBlackWins={props.setBlackWins} promotingSquare={props.promotingSquare} />
-      <MoveHistory whiteMoves={props.whiteMoves} blackMoves={props.blackMoves} />
-      <Timer timerFor={-1} turn={props.turn} mode={props.mode} setMode={props.setMode} whiteWins={props.whiteWins} blackWins={props.blackWins} setWhiteWins={props.setWhiteWins} setBlackWins={props.setBlackWins} promotingSquare={props.promotingSquare} />
-      <Typography color="white" fontSize={20} fontFamily="Tilt Neon" height={10}>
-        {props.pointsWhite > props.pointsBlack ? `+${props.pointsWhite - props.pointsBlack}` : null}
-      </Typography>
-    </Stack>
-  );
-}
-
-function ScoreBoard({ whiteWins, blackWins, scoreboardAnnouncement }) {
-  return (
-    <Stack
-      direction="row"
-      justifyContent="space-around"
-      alignItems="center"
-      bgcolor="grey"
-      height={50}
-    >
-      { !scoreboardAnnouncement &&
-        <Typography color="white" fontSize={24} fontFamily="Tilt Neon">
-          White: {whiteWins}
-        </Typography>
-      }
-      { scoreboardAnnouncement &&
-        <Typography color="white" fontSize={24} fontFamily="Tilt Neon">
-          {scoreboardAnnouncement}
-        </Typography>
-      }
-      { !scoreboardAnnouncement &&
-        <Typography color="white" fontSize={24} fontFamily="Tilt Neon">
-          Black: {blackWins}
-        </Typography>
-      }
-    </Stack>
-  );
-}
 
 function ChessSquare({ x, y, piece, selected, destinated, clickSquare }) {
   const shaded = (x + y) % 2 === 0;
@@ -796,7 +672,7 @@ export default function Game({ mode, setMode }) {
     <Stack direction="row" sx={{ userSelect: 'none' }}>
       {promotingSquare && <PromotionCard />}
       <Box>
-        <ScoreBoard whiteWins={whiteWins} blackWins={blackWins} scoreboardAnnouncement={scoreboardAnnouncement} />
+        <Score whiteWins={whiteWins} blackWins={blackWins} scoreboardAnnouncement={scoreboardAnnouncement} />
         <Stack direction="row" boxShadow={10}>
           {[...Array(8)].map((_, i) => (
             <ChessColumn
