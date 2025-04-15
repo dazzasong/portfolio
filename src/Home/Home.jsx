@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Box, Stack, Typography } from "@mui/material";
 import MainContent from "./MainContent/MainContent";
 
@@ -11,12 +10,8 @@ function Header() {
 }
 
 function Home() {
-  useEffect(() => {
-    document.body.style.backgroundColor = "gold";
-  }, []);
-
   return (
-    <Box sx={{ userSelect: "none" }}>
+    <Box bgcolor="gold" sx={{ userSelect: 'none' }}>
       <Header />
       <MainContent />
     </Box>
