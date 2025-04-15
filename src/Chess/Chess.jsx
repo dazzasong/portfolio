@@ -3,8 +3,8 @@ import { Button, Stack } from "@mui/material";
 import { Flag, LocalFireDepartment, Refresh } from "@mui/icons-material";
 import Game from "./Game/Game";
 
-const gameStartSoundEffect = new Audio("sounds/game-start.mp3");
-const gameEndSoundEffect = new Audio("sounds/game-end.mp3");
+const gameStartSfx = new Audio("chess-assets/sounds/game-start.mp3");
+const gameEndSfx = new Audio("chess-assets/sounds/game-end.mp3");
 
 function Chess() {
   const [mode, setMode] = useState(0); // 0 = Initial, 1 = InGame, 2 = EndGame
@@ -22,15 +22,15 @@ function Chess() {
     buttonText = "Surrender";
     buttonColor = "red";
     endButtonIcon = <Flag />;
-    gameStartSoundEffect.play();
+    gameStartSfx.play();
   } else {
     buttonText = "Rematch";
     buttonColor = "orange";
     endButtonIcon = <Refresh />;
-    gameEndSoundEffect.play();
+    gameEndSfx.play();
   }
 
-  const clickGameButton = () => {
+  const handleClick = () => {
     if (mode === 0) setMode(1);
     else if (mode === 1) setMode(2);
     else setMode(1);
@@ -38,13 +38,13 @@ function Chess() {
 
   return (
     <Stack bgcolor="bisque" alignItems="center">
-      <Button disableRipple disableElevation
-        onClick={clickGameButton}
+      <Button
+        onClick={handleClick}
         variant="contained"
         startIcon={startButtonIcon}
         endIcon={endButtonIcon}
         sx={{
-          minWidth: 220,
+          width: 200,
           height: 75,
           m: 4,
           fontSize: 20,

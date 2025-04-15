@@ -67,7 +67,7 @@ function ChessColumn({ xAxis, pieces, selectedY, destinationY = [], clickSquare 
   );
 }
 
-export default function Game({ mode, setMode }) {
+export default function Game(props) {
   const initialBoard = [
     ["rw", "pw", null, null, null, null, "pb", "rb"],
     ["nw", "pw", null, null, null, null, "pb", "nb"],
@@ -99,7 +99,7 @@ export default function Game({ mode, setMode }) {
   const opposingColor = turn === -1 ? "b" : "w";
 
   useEffect(() => {
-    if (mode === 1) { // if a new game starts
+    if (props.mode === 1) { // if a new game starts
       setBoard(initialBoard);
       setTurn(-1);
       setWhiteMoves([]);
@@ -110,7 +110,7 @@ export default function Game({ mode, setMode }) {
       setCastleStateBlack(0);
       setScoreboardAnnouncement(null);
       setIsCheckmate(0);
-    } else if (mode === 2) { // if the game ends
+    } else if (props.mode === 2) { // if the game ends
       setSelectedSquare(null);
       setDestinationSquares(null);
       setPromotingSquare(null);
@@ -120,7 +120,7 @@ export default function Game({ mode, setMode }) {
       }
     }
   // eslint-disable-next-line
-  }, [mode])
+  }, [props.mode])
 
   function addPoint(pieceTaken, opposite=false, customPoint) {
     const condition = opposite ? turn === -1 : turn === 1;
@@ -451,7 +451,7 @@ export default function Game({ mode, setMode }) {
       }
       return true;
     }
-    if (board[x][y]?.[1] === color && !selected && !destinated && !promotingSquare && mode === 1) { // If the clicked square has a piece and is their current turn...
+    if (board[x][y]?.[1] === color && !selected && !destinated && !promotingSquare && props.mode === 1) { // If the clicked square has a piece and is their current turn...
       setSelectedSquare([x, y]);
       let lst = []; // We add possible moves to this array and setDestinationSquares to this at the end
 
@@ -637,7 +637,7 @@ export default function Game({ mode, setMode }) {
         if (!checkmated(updatedBoard)) editMove("+");
         else {
           editMove("#");
-          setMode(2);
+          props.setMode(2);
           turn === 1 ? setBlackWins(blackWins + 1) : setWhiteWins(whiteWins + 1);
           turn === 1 ? setScoreboardAnnouncement("Black wins - Checkmate") : setScoreboardAnnouncement("White wins! - Checkmate");
           setIsCheckmate(1);
@@ -687,8 +687,8 @@ export default function Game({ mode, setMode }) {
       </Box>
       <SideBar
         turn={turn}
-        mode={mode}
-        setMode={setMode}
+        mode={props.mode}
+        setMode={props.setMode}
         whiteMoves={whiteMoves}
         blackMoves={blackMoves}
         pointsWhite={pointsWhite}
