@@ -11,7 +11,7 @@ function Header() {
 
 function Home() {
   return (
-    <Box bgcolor="gold" sx={{ userSelect: 'none' }}>
+    <Box bgcolor="gold" minHeight="100svh" sx={{ userSelect: 'none' }}>
       <Header />
       <MainContent />
     </Box>

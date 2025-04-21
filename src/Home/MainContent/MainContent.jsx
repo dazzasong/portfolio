@@ -4,7 +4,7 @@ import WebsiteList from "./WebsiteList";
 
 export default function MainContent() {
   return (
-    <Box m={1}>
+    <Box mx={1}>
       <Info />
       <Divider variant="middle" sx={{ marginY: 4 }} />
       <WebsiteList />
