@@ -40,7 +40,7 @@ function Snake2() {
   }
 
   return (
-    <Stack alignItems="center" spacing={4} bgcolor="green" height="100vh">
+    <Stack alignItems="center" spacing={4} bgcolor="green" minHeight="100svh">
       <Typography
         color="white"
         fontSize={30}
