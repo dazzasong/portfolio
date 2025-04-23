@@ -7,6 +7,7 @@ import PizzaHelp from "./PizzaHelp/PizzaHelp";
 import LevelSelection from "./PizzaHelp/LevelSelection";
 import Settings from "./PizzaHelp/Settings";
 import TheButton from "./TheButton/TheButton";
+import BrainSkills from "./BrainSkills/BrainSkills";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="pizzahelp/levelselection" element={<LevelSelection />} />
         <Route path="pizzahelp/settings" element={<Settings />} />
         <Route path="thebutton" element={<TheButton />} />
+        <Route path="brainskills" element={<BrainSkills />} />
         <Route path="*" element={<NoPage />} />
       </Routes>
     </BrowserRouter>

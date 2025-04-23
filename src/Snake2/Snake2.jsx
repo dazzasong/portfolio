@@ -3,6 +3,12 @@ import { Button, Stack, Typography } from "@mui/material";
 import Game from "./Game";
 import Settings from "./Settings";
 
+const playSound = (path, muted=false) => {
+  if (muted) return;
+  const audio = new Audio(path);
+  audio.play();
+};
+
 function Snake2() {
   const [gameState, setGameState] = useState(0);
 
@@ -12,19 +18,13 @@ function Snake2() {
   const [isGridEnabled, setIsGridEnabled] = useState(false);
   const [borderColor, setBorderColor] = useState("#ffffff");
 
+  let buttonText = "Start Game";
+
   const handleGameState = () => {
     if (gameState === 1) setGameState(2);
     else setGameState(1);
   };
 
-  function playSound(path, muted=false) {
-    if (muted) return;
-    const audio = new Audio(path);
-    audio.play();
-  };
-
-  let buttonText = "Start Game";
-  
   switch (gameState) {
     case 0:
       buttonText = "Start Game";
