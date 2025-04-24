@@ -1,7 +1,9 @@
 import { Stack, TextField, Typography } from "@mui/material";
 import { useState } from "react";
+import Timer from "./Timer";
 
 export default function Test({ setHasStarted, playSound }) {
+  const [lives, setLives] = useState(3);
   const [questionNum, setQuestionNum] = useState(0);
   
   const date = new Date();
@@ -148,21 +150,29 @@ export default function Test({ setHasStarted, playSound }) {
 
     if (e.key === 'Enter') {
       if (answer === answers[questionNum]) {
-        setQuestionNum((questionNum) => questionNum + 1);
+        setQuestionNum(questionNum => questionNum + 1);
         playSound('correct.mp3');
-      } else playSound('wrong.mp3');
+      } else {
+        setLives(prevLives => prevLives - 1);
+        playSound('wrong.mp3');
+      }
       
       e.target.value = null; // clears input
     }
   };
 
-  if (questionNum > questions.length) setHasStarted(false);
+  if (lives <= 0 || questionNum > questions.length) setHasStarted(false);
 
   return (
     <Stack alignItems='center' spacing={1}>
-      <Stack position="absolute" top={10} left={10}>
+      <Stack position='absolute' top={10} left={10} spacing={2}>
+        <Timer />
+        <Stack direction='row' spacing={1}>
+          {Array.from({ length: lives }, (_, i) => (
+            <img src="brainskills-assets/imgs/heart.png" alt="heart" width={32} key={i} />
+          ))}
+        </Stack>
         <Typography fontSize={24}>Question {questionNum+1}</Typography>
-
       </Stack>
       <Typography fontSize={18}>{questions[questionNum]}</Typography>
       <TextField variant="standard" onKeyDown={handleEnter} />
