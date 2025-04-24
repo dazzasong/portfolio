@@ -3,7 +3,11 @@ import { useState } from "react";
 
 export default function Test({ setHasStarted, playSound }) {
   const [questionNum, setQuestionNum] = useState(0);
-
+  
+  const date = new Date();
+  const months = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"];
+  const weekdays = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+  
   const questions = [
     "6 + 3 = ?",
     "12 - 4 = ?", 
@@ -11,16 +15,16 @@ export default function Test({ setHasStarted, playSound }) {
     "8 ÷ 2 = ?",
     "Sugar tastes _____.",
     "Black coffee tastes ______.",
+    "How many sides does a triangle have?",
     "How many days in a year?",
     "How many days in a leap year?",
-    "How many sides does a triangle have?",
     "Who was the first president of the United States?",
     "This chilli pepper is quite _____!",
     "What is the largest organ in the human body?",
     "I left milk out for 18 days. Can I drink it?",
     "14 + 6 = ?",
     "33 x 3 = ?",
-    "How much does a Big Mac cost at Mcdonald's? (dollar sign not needed)",
+    "How much does a Big Mac cost at Mcdonald's?",
     "H2O is _____",
     "Sweet + bitter = ?",
     "What is the coldest planet in the Solar System?",
@@ -45,7 +49,29 @@ export default function Test({ setHasStarted, playSound }) {
     "J.K _______",
     "_______ Shakespeare",
     "24 hours a day, 7 days a ____",
-    "Answer the trolley problem. Should you pull the lever?"
+    "Answer the trolley problem. Should you pull the lever?",
+    "Salt and ______",
+    "______ Ramsay",
+    "What is the fear of heights called?",
+    "Arachnophobia is the fear of what?",
+    "Claustrophobia is the fear of _______ spaces",
+    "What is the name of Mcdonald's official mascot?",
+    "I dropped a glass from the top of the Effiel Tower. Will it break?",
+    "I dropped a chair from the top of the Effiel Tower. Will it break?",
+    "I dropped a cat from the top of the Effiel Tower. Will it..?",
+    "Assuming it had 9 lives, how many lives does the cat have now?",
+    "What question number are we up to?",
+    "Is 52 an even number?",
+    "What coding language did I use to make this website?",
+    "What is the current year?",
+    "What is the current month?",
+    "What is the current day of month?",
+    "What day is it?",
+    "How many hours has it been since the start of today?",
+    "Is it currently AM or PM?",
+    "How many minutes has it been since the start of this hour?",
+    "How many seconds has it been since the start of this minute?",
+    "And finally, how many breakfast burritos can you fit in your mouth?"
   ];
 
   const answers = [
@@ -55,16 +81,16 @@ export default function Test({ setHasStarted, playSound }) {
     4,
     "sweet",
     "bitter",
+    3,
     365,
     366,
-    3,
     "george washington",
     "spicy",
     "skin",
     "no",
     20,
     99,
-    9.75,
+    "$9.75",
     "water",
     "bittersweet",
     "uranus",
@@ -89,7 +115,29 @@ export default function Test({ setHasStarted, playSound }) {
     "rowling",
     "william",
     "week",
-    "yes"
+    "yes",
+    "pepper",
+    "gordon",
+    "acrophobia",
+    "spiders",
+    "enclosed",
+    "ronald mcdonald",
+    "yes",
+    "yes",
+    "no",
+    8,
+    52,
+    "yes",
+    "javascript",
+    date.getFullYear(),
+    months[date.getMonth()],
+    date.getDate(),
+    weekdays[date.getDay()],
+    date.getHours(),
+    date.getHours() >= 12 ? "pm" : "am",
+    date.getMinutes(),
+    date.getSeconds(),
+    true
   ];
 
   const handleEnter = (e) => {
@@ -101,8 +149,8 @@ export default function Test({ setHasStarted, playSound }) {
     if (e.key === 'Enter') {
       if (answer === answers[questionNum]) {
         setQuestionNum((questionNum) => questionNum + 1);
-        playSound('brainskills-assets/correct.mp3');
-      } else playSound('brainskills-assets/wrong.mp3');
+        playSound('correct.mp3');
+      } else playSound('wrong.mp3');
       
       e.target.value = null; // clears input
     }
@@ -112,7 +160,10 @@ export default function Test({ setHasStarted, playSound }) {
 
   return (
     <Stack alignItems='center' spacing={1}>
-      <Typography fontSize={24} position="absolute" top={10} left={10}>Question {questionNum+1}</Typography>
+      <Stack position="absolute" top={10} left={10}>
+        <Typography fontSize={24}>Question {questionNum+1}</Typography>
+
+      </Stack>
       <Typography fontSize={18}>{questions[questionNum]}</Typography>
       <TextField variant="standard" onKeyDown={handleEnter} />
     </Stack>

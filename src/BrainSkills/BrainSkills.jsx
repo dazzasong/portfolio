@@ -3,8 +3,8 @@ import { Stack } from "@mui/material";
 import MainMenu from "./MainMenu";
 import Test from "./Test/Test";
 
-const playSound = (path) => {
-  const audio = new Audio(path);
+const playSound = (name) => {
+  const audio = new Audio(`brainskills-assets/sounds/${name}`);
   audio.play();
 };
 

@@ -6,7 +6,7 @@ export default function MainMenu({ setHasStarted, playSound }) {
 
   const handleClick = () => {
     setAttemptsToLeave((attemptsToLeave) => attemptsToLeave + 1);
-    playSound('brainskills-assets/nope.mp3');
+    playSound('nope.mp3');
   };
 
   return (
