@@ -152,11 +152,10 @@ export default function Test({ setHasStarted, playSound }) {
       if (answer === answers[questionNum]) {
         setQuestionNum(questionNum => questionNum + 1);
         playSound('correct.mp3');
-      } else {
+      } else if (answer !== "") {
         setLives(prevLives => prevLives - 1);
         playSound('wrong.mp3');
       }
-      
       e.target.value = null; // clears input
     }
   };
