@@ -166,7 +166,7 @@ export default function Test({ setHasStarted, playSound }) {
   return (
     <Stack alignItems='center' spacing={1}>
       <Stack position='absolute' top={10} left={10} spacing={2}>
-        <Timer />
+        <Timer setHasStarted={setHasStarted} />
         <Stack direction='row' spacing={1}>
           {Array.from({ length: lives }, (_, i) => (
             <img src="brainskills-assets/imgs/heart.png" alt="heart" width={32} key={i} />

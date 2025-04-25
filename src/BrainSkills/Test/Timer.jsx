@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Typography } from "@mui/material";
 
-export default function Timer() {
+export default function Timer({ setHasStarted }) {
   const [seconds, setSeconds] = useState(600); // 10 minutes
 
   useEffect(() => {
@@ -19,6 +19,8 @@ export default function Timer() {
     const sec = seconds % 60;
     return `${min.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
   };
+
+  if (seconds <= 0) setHasStarted(false);
 
   return (
     <Typography>{formatTime(seconds)}</Typography>
