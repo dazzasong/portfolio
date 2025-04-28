@@ -7,7 +7,8 @@ export default function Timer(props) {
   const [seconds, setSeconds] = useState(600);
   let color = seconds <= 10 ? "red" : "white";
 
-  useEffect(() => { // useEffect for timer
+  // Timer
+  useEffect(() => {
     if ((props.promotingSquare ? props.turn !== props.timerFor : props.turn === props.timerFor) && props.mode === 1) {
       const chessTimer = setInterval(() => {
         setSeconds(prevSeconds => prevSeconds - 1);
@@ -17,11 +18,13 @@ export default function Timer(props) {
   // eslint-disable-next-line
   }, [props.turn, props.mode, props.promotingSquare]);
 
-  useEffect(() => { // Resets timer on new game
+  // Resets timer on new game
+  useEffect(() => {
     if (props.mode === 1) setSeconds(600)
   }, [props.mode]);
 
-  const formatTime = (time) => { // Formats time to minutes:seconds
+  // Formats time to minutes:seconds
+  const formatTime = (time) => {
     const minutes = Math.floor(time / 60);
     const seconds = time % 60;
     return `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
@@ -39,7 +42,7 @@ export default function Timer(props) {
 
   return (
     <Box width={52} p={1} border="solid" borderColor={color} borderRadius={1}>
-      <Typography color={color} fontSize={20} fontWeight="bold" fontFamily="Tilt Neon">
+      <Typography color={color} fontSize={20} fontWeight='bold' fontFamily="Tilt Neon">
         {formatTime(seconds)}
       </Typography>
     </Box>

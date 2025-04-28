@@ -123,7 +123,7 @@ export default function Game(props) {
   // eslint-disable-next-line
   }, [props.mode])
 
-  function addPoint(pieceTaken, opposite=false, customPoint) {
+  const addPoint = (pieceTaken, opposite=false, customPoint) => {
     const condition = opposite ? turn === -1 : turn === 1;
 
     switch (pieceTaken[0]) {
@@ -148,28 +148,25 @@ export default function Game(props) {
         if (condition) setPointsBlack(pointsBlack + customPoint);
         else setPointsWhite(pointsWhite + customPoint);
     }
-  }
+  };
 
-  function spacesLen(x, y, direction) {
-    /*
-    Directions:
-    0 = up, 1 = right, 2 = down, 3 = left, 4 = topLeft, 5 = topRight, 6 = bottomRight, 7 = bottomLeft
-    */
+  // Calculate spaces to board edge
+  const spacesLen = (x, y, direction) => {
     switch (direction) {
-      case 0: return 7 - y;
-      case 1: return 7 - x;
-      case 2: return y;
-      case 3: return x;
-      case 4: return Math.min(7 - y, x);
-      case 5: return Math.min(7 - y, 7 - x);
-      case 6: return Math.min(y, 7 - x);
-      case 7: return Math.min(y, x);
+      case 0: return 7 - y; // up
+      case 1: return 7 - x; // right
+      case 2: return y; // down
+      case 3: return x; // left
+      case 4: return Math.min(7 - y, x); // topLeft
+      case 5: return Math.min(7 - y, 7 - x); // topRight
+      case 6: return Math.min(y, 7 - x); // bottomRight
+      case 7: return Math.min(y, x); // bottomLeft
       default: throw new Error("Invalid direction!");
     }
-  }
+  };
 
-  function PromotionCard() {
-    function promote(promotionPiece) {
+  function PromotionCard() { // reminder: make this an individual component
+    const promote = (promotionPiece) => {
       let updatedBoard = board.map(row => [...row]);
       updatedBoard[promotingSquare[0]][promotingSquare[1]] = `${promotionPiece}${opposingColor}`;
       setBoard(updatedBoard);
@@ -190,19 +187,12 @@ export default function Game(props) {
       }
 
       promoteSfx.play();
-    }
+    };
 
     const promotionSrc = (piece) => `chess-assets/imgs/${piece}${color}`;
 
     return (
-      <Stack
-        border={"solid"}
-        p={1}
-        spacing={2}
-        sx={{
-          backgroundImage: "linear-gradient(white, grey)"
-        }}
-      >
+      <Stack spacing={2} p={1} border={"solid"} sx={{ backgroundImage: 'linear-gradient(white, grey)' }}>
         <Typography fontSize={16} fontWeight="bold">
           Promote to..
         </Typography>
@@ -224,26 +214,25 @@ export default function Game(props) {
       </Stack>
     );
   }
-  function clickSquare(x, y, selected, destinated) { // function when a square is clicked
-    // Checks if move is within bounds
-    const withinBounds = (x, y) => x >= 0 && x <= 7 && y >= 0 && y <= 7;
+  const clickSquare = (x, y, selected, destinated) => {
+    const withinBounds = (x, y) => x >= 0 && x <= 7 && y >= 0 && y <= 7; // Checks if move is within bounds
 
     // Fundamentally canMove but does not consider king in check conditions
-    function canPotentialMove(toX, toY, board, opposing=false) {
+    const canPotentialMove = (toX, toY, board, opposing=false) => {
       const c = opposing ? opposingColor : color
       return withinBounds(toX, toY) && board[toX][toY]?.[1] !== c;
-    }
+    };
 
-    function canMove(toX, toY, curBoard=board, opposing=false, fromX=x, fromY=y) {
+    const canMove = (toX, toY, curBoard=board, opposing=false, fromX=x, fromY=y) => {
       if (!canPotentialMove(toX, toY, curBoard, opposing)) return false;
       // Now check if king is in check
       let tempBoard = curBoard.map(row => [...row]);
       tempBoard[toX][toY] = tempBoard[fromX][fromY];
       tempBoard[fromX][fromY] = null;
       return !kingInCheck(tempBoard, opposing);
-    }
+    };
 
-    function kingInCheck(board, opposing=false) {
+    const kingInCheck = (board, opposing=false) => {
       let kingX, kingY;
       for (let i = 0; i < 8; i++) {
         for (let j = 0; j < 8; j++) {
@@ -256,7 +245,7 @@ export default function Game(props) {
 
       const usedColor = opposing ? color : opposingColor;
       
-      // We want to test if any opposing pieces are able to capture the king in the current board state.
+      // Test if any opposing pieces are able to capture the king in the current board state.
       const kicTurn = opposing ? -turn : turn;
       
       // Pawn
@@ -317,10 +306,10 @@ export default function Game(props) {
           (canPotentialMove(kingX+1, kingY-1, board, opposing) && board[kingX+1][kingY-1] === `k${usedColor}`) ||
           (canPotentialMove(kingX-1, kingY-1, board, opposing) && board[kingX-1][kingY-1] === `k${usedColor}`)) return true;
       return false;
-    }
+    };
     
     // In the current board state, can the piece at position (x,y) make any of its potential moves, without leaving the king in check
-    function opposingPiecesCanMove(x, y, board) {
+    const opposingPiecesCanMove = (x, y, board) => {
       switch (board[x][y]) {
         // Pawn moves
         case `p${opposingColor}`:
@@ -431,8 +420,8 @@ export default function Game(props) {
         default:
           throw new Error("Invalid piece!");
       }
-    }
-    function checkmated(board) {
+    };
+    const checkmated = (board) => {
       for (let i = 0; i < 8; i++) {
         for (let j = 0; j < 8; j++) {
           const piece = board[i][j];
@@ -441,7 +430,7 @@ export default function Game(props) {
         }
       }
       return true;
-    }
+    };
     if (board[x][y]?.[1] === color && !selected && !destinated && !promotingSquare && props.mode === 1) { // If the clicked square has a piece and is their current turn...
       setSelectedSquare([x, y]);
 
@@ -572,10 +561,10 @@ export default function Game(props) {
       const selectedPiece = board[selectedSquare[0]][selectedSquare[1]];
       // Constructing move notation
       let whiteMove = '', blackMove = '';
-      function editMove(notation, setTo=false) {
+      const editMove = (notation, setTo=false) => {
         if (setTo) turn === 1 ? blackMove = notation : whiteMove = notation;
         else turn === 1 ? blackMove += notation : whiteMove += notation;
-      }
+      };
       if (selectedPiece !== `p${color}`) editMove(selectedPiece[0].toUpperCase());
       if (board[x][y]) editMove("x");
       editMove(String.fromCharCode(x + 97));
@@ -637,8 +626,8 @@ export default function Game(props) {
         updatedBoard[enPassantSquare[0]][enPassantSquare[1]] = null;
         addPoint("p");
         captureSfx.play();
-      } else if (!board[x][y]) moveSfx.play(); // Plays moveSfx if destination square has no piece
-      else if (board[x][y]) { // Adds points and plays captureSfx if destination square has an enemy piece
+      } else if (!board[x][y]) moveSfx.play();
+      else if (board[x][y]) {
         addPoint(board[x][y]);
         captureSfx.play();
       }

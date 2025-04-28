@@ -4,13 +4,11 @@ import { Stack, Typography } from "@mui/material";
 export default function MoveHistory({ whiteMoves, blackMoves }) {
   function MoveBox({ move, color }) {
     return (
-      <Typography color={color} fontFamily="Tilt Neon">
-        {move}
-      </Typography>
+      <Typography color={color} fontFamily="Tilt Neon">{move}</Typography>
     );
   }
 
-  // Everytime either whiteMoves or blackMoves update we automatically scroll to the bottom
+  // Automatically scroll to bottom when MoveHistory updates
   useEffect(() => {
     const scrollDiv = document.getElementById("moveContainer");
     scrollDiv.scrollTop = scrollDiv.scrollHeight;
