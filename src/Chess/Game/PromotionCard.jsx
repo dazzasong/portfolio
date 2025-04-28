@@ -1,4 +1,8 @@
-export default function PromotionCard() {
+import { IconButton, Stack, Typography } from "@mui/material";
+
+const promoteSfx = new Audio("chess-assets/sounds/promote.mp3");
+
+export default function PromotionCard({ setBoard, promotingSquare, setPromotingSquare, opposingColor }) {
   const promote = (promotionPiece) => {
     let updatedBoard = board.map(row => [...row]);
     updatedBoard[promotingSquare[0]][promotingSquare[1]] = `${promotionPiece}${opposingColor}`;

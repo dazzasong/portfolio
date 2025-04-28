@@ -9,7 +9,6 @@ const moveSfx = new Audio("chess-assets/sounds/move.mp3");
 const captureSfx = new Audio("chess-assets/sounds/capture.mp3");
 const castleSfx = new Audio("chess-assets/sounds/castle.mp3");
 const checkSfx = new Audio("chess-assets/sounds/check.mp3");
-const promoteSfx = new Audio("chess-assets/sounds/promote.mp3");
 
 function ChessSquare({ x, y, piece, selected, destinated, clickSquare }) {
   const shaded = (x + y) % 2 === 0;
@@ -602,7 +601,7 @@ export default function Game(props) {
   return (
     <Stack direction="row" sx={{ userSelect: 'none' }}>
       {promotingSquare &&
-        <PromotionCard />
+        <PromotionCard setBoard={setBoard} promotingSquare={promotingSquare} setPromotingSquare={setPromotingSquare} opposingColor={opposingColor} />
       }
       <Box>
         <Score whiteWins={whiteWins} blackWins={blackWins} scoreboardAnnouncement={scoreboardAnnouncement} />
