@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { Button, Stack, Typography } from "@mui/material";
 
-export default function MainMenu({ setHasStarted, playSound }) {
+export default function MainMenu({ setState, playSound }) {
   const [attemptsToLeave, setAttemptsToLeave] = useState(0);
 
   const handleClick = (btn) => {
     if (btn === 0) {
-      setHasStarted(true);
+      setState(1);
       playSound('click.mp3');
     } else {
       setAttemptsToLeave((attemptsToLeave) => attemptsToLeave + 1);

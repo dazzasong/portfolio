@@ -1,9 +1,8 @@
 import { Stack, TextField, Typography } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Timer from "./Timer";
 
-export default function Test({ setHasStarted, playSound }) {
-  const [lives, setLives] = useState(3);
+export default function Test({ setState, lives, setLives, playSound }) {
   const [questionNum, setQuestionNum] = useState(0);
   
   const date = new Date();
@@ -73,7 +72,7 @@ export default function Test({ setHasStarted, playSound }) {
     "Is it currently AM or PM?",
     "How many minutes has it been since the start of this hour?",
     "How many seconds has it been since the start of this minute?",
-    "And finally, how many breakfast burritos can you fit in your mouth?"
+    "Have you completed this test?"
   ];
 
   const answers = [
@@ -139,14 +138,16 @@ export default function Test({ setHasStarted, playSound }) {
     date.getHours() >= 12 ? "pm" : "am",
     date.getMinutes(),
     date.getSeconds(),
-    true
+    "yes"
   ];
+  
+  // eslint-disable-next-line
+  useEffect(() => setLives(3), []); // Resets lives on render
 
   const handleEnter = (e) => {
     const value = e.target.value.trim();
     const isFloat = !isNaN(parseFloat(value));
-    // convert string to float, otherwise set string to lowercase
-    const answer = isFloat ? parseFloat(value) : value.toLowerCase();
+    const answer = isFloat ? parseFloat(value) : value.toLowerCase(); // convert string to float, otherwise set string to lowercase
 
     if (e.key === 'Enter') {
       if (answer === answers[questionNum]) {
@@ -160,12 +161,12 @@ export default function Test({ setHasStarted, playSound }) {
     }
   };
 
-  if (lives <= 0 || questionNum > questions.length) setHasStarted(false);
+  if (lives <= 0 || questionNum > questions.length) setState(2);
 
   return (
     <Stack alignItems='center' spacing={1}>
       <Stack position='absolute' top={10} left={10} spacing={2}>
-        <Timer setHasStarted={setHasStarted} />
+        <Timer setState={setState} />
         <Stack direction='row' spacing={1}>
           {Array.from({ length: lives }, (_, i) => (
             <img src="brainskills-assets/imgs/heart.png" alt="heart" width={32} key={i} />

@@ -15,25 +15,26 @@ export default function MoveHistory({ whiteMoves, blackMoves }) {
     const scrollDiv = document.getElementById("moveContainer");
     scrollDiv.scrollTop = scrollDiv.scrollHeight;
   }, [whiteMoves, blackMoves]);
+
   return (
     <Stack
-      direction="row"
-      bgcolor="grey"
+      direction='row'
+      bgcolor='grey'
       width={120}
       height={340}
       px={1}
-      border="solid white"
-      overflow="auto"
-      id="moveContainer"
+      border='solid white'
+      overflow='auto'
+      id='moveContainer'
       sx={{
-        scrollbarWidth: "none"
+        scrollbarWidth: 'none'
       }}
     >
       <Stack width={60}>
-        {whiteMoves.map((move, index) => <MoveBox move={move} color="white" key={index} />)}
+        {whiteMoves.map((move, index) => <MoveBox move={move} color='white' key={index} />)}
       </Stack>
       <Stack width={60}>
-        {blackMoves.map((move, index) => <MoveBox move={move} color="black" key={index} />)}
+        {blackMoves.map((move, index) => <MoveBox move={move} color='black' key={index} />)}
       </Stack>
     </Stack>
   );

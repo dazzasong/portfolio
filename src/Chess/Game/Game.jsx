@@ -78,6 +78,7 @@ export default function Game(props) {
     ["nw", "pw", null, null, null, null, "pb", "nb"],
     ["rw", "pw", null, null, null, null, "pb", "rb"]
   ];
+
   const [board, setBoard] = useState(initialBoard);
   const [turn, setTurn] = useState(-1); // -1: White"s turn || 1: Black"s turn
   const [whiteMoves, setWhiteMoves] = useState([]);
@@ -173,7 +174,7 @@ export default function Game(props) {
       updatedBoard[promotingSquare[0]][promotingSquare[1]] = `${promotionPiece}${opposingColor}`;
       setBoard(updatedBoard);
       setPromotingSquare(null);
-      
+
       switch (promotionPiece) {
         case "q":
           addPoint(0, true, 8);
@@ -187,22 +188,11 @@ export default function Game(props) {
           break;
         default: throw new Error("Invalid promotionPiece!");
       }
+
       promoteSfx.play();
     }
 
-    function promotionsrc(piece) {
-      switch (piece) {
-        case "q":
-          return turn === 1 ? "imgs/qw" : "imgs/qb";
-        case "r":
-          return turn === 1 ? "imgs/rw" : "imgs/rb";
-        case "n":
-          return turn === 1 ? "imgs/nw" : "imgs/nb";
-        case "b":
-          return turn === 1 ? "imgs/bw" : "imgs/bb";
-        default: throw new Error("Invalid piece!");
-      }
-    }
+    const promotionSrc = (piece) => `chess-assets/imgs/${piece}${color}`;
 
     return (
       <Stack
@@ -217,19 +207,19 @@ export default function Game(props) {
           Promote to..
         </Typography>
         <IconButton onClick={() => promote("q")} disableRipple>
-          <img src={promotionsrc("q")} alt={color ? "Black Queen" : "White Queen"} />
+          <img src={promotionSrc("q")} alt={color ? "Black Queen" : "White Queen"} />
         </IconButton>
         -
         <IconButton onClick={() => promote("r")} disableRipple>
-          <img src={promotionsrc("r")} alt={color ? "Black Rook" : "White Rook"} />
+          <img src={promotionSrc("r")} alt={color ? "Black Rook" : "White Rook"} />
         </IconButton>
         -
         <IconButton onClick={() => promote("n")} disableRipple>
-          <img src={promotionsrc("n")} alt={color ? "Black Knight" : "White Knight"} />
+          <img src={promotionSrc("n")} alt={color ? "Black Knight" : "White Knight"} />
         </IconButton>
         -
         <IconButton onClick={() => promote("b")} disableRipple>
-          <img src={promotionsrc("b")} alt={color ? "Black Bishop" : "White Bishop"} />
+          <img src={promotionSrc("b")} alt={color ? "Black Bishop" : "White Bishop"} />
         </IconButton>
       </Stack>
     );
@@ -328,6 +318,7 @@ export default function Game(props) {
           (canPotentialMove(kingX-1, kingY-1, board, opposing) && board[kingX-1][kingY-1] === `k${usedColor}`)) return true;
       return false;
     }
+    
     // In the current board state, can the piece, at position (x,y) make any of its potential moves, without leaving the king in check
     function opposingPiecesCanMove(x, y, board) {
       switch (board[x][y]) {

@@ -13,6 +13,11 @@ export default function Info() {
         <Typography>I was bored.</Typography>
         <Typography variant="h6" fontStyle="italic">What do I use?</Typography>
         <Typography>The languages I use are Python, Javascript, and C#. The games below were made using Javascript.</Typography>
+        <Box mt={2}>
+          <audio controls>
+            <source src="info-read.mp3" type="audio/mpeg" />
+          </audio>
+        </Box>
       </Box>
       <PortFolioCard />
     </Stack>

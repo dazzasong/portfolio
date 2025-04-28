@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Stack } from "@mui/material";
 import MainMenu from "./MainMenu";
 import Test from "./Test/Test";
+import Results from "./Results";
 
 const playSound = (name) => {
   const audio = new Audio(`brainskills-assets/sounds/${name}`);
@@ -9,16 +10,18 @@ const playSound = (name) => {
 };
 
 function BrainSkills() {
-  const [hasStarted, setHasStarted] = useState(false);
+  const [state, setState] = useState(0);
+  const [lives, setLives] = useState(3);
+
+  const render = () => {
+    if (state === 0) return <MainMenu setState={setState} playSound={playSound} />;
+    else if (state === 1) return <Test setState={setState} lives={lives} setLives={setLives} playSound={playSound} />;
+    else return <Results setState={setState} lives={lives} setLives={setLives} />
+  };
 
   return (
     <Stack justifyContent='center' alignItems='center' height='100vh'>
-      { !hasStarted &&
-        <MainMenu setHasStarted={setHasStarted} playSound={playSound} />
-      }
-      { hasStarted &&
-        <Test setHasStarted={setHasStarted} playSound={playSound} />
-      }
+      {render()}
     </Stack>
   );
 }
