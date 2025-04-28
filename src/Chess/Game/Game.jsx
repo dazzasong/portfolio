@@ -319,7 +319,7 @@ export default function Game(props) {
       return false;
     }
     
-    // In the current board state, can the piece, at position (x,y) make any of its potential moves, without leaving the king in check
+    // In the current board state, can the piece at position (x,y) make any of its potential moves, without leaving the king in check
     function opposingPiecesCanMove(x, y, board) {
       switch (board[x][y]) {
         // Pawn moves
@@ -327,7 +327,7 @@ export default function Game(props) {
           let mod = turn;
           let startPoint = -turn === 1 ? 6 : 1;
           if ((canMove(x, y+1*mod, board, true, x, y) && !board[x][y+1*mod]) ||
-              (canMove(x, y+2*mod, board, true, x, y) && !board[x][y+2*mod] && y === startPoint) ||
+              (canMove(x, y+2*mod, board, true, x, y) && !board[x][y+1*mod] && !board[x][y+2*mod] && y === startPoint) ||
               (withinBounds(x-1, y+1*mod) && board[x-1][y+1*mod] && canMove(x-1, y+1*mod, board, true, x, y)) ||
               (withinBounds(x+1, y+1*mod) && board[x+1][y+1*mod] && canMove(x+1, y+1*mod, board, true, x, y)) ||
               (canMove(x-1, y+1*mod, board, true, x, y) && x === enPassantSquare?.[0] + 1 && y === enPassantSquare[1]) ||
@@ -444,14 +444,14 @@ export default function Game(props) {
     }
     if (board[x][y]?.[1] === color && !selected && !destinated && !promotingSquare && props.mode === 1) { // If the clicked square has a piece and is their current turn...
       setSelectedSquare([x, y]);
-      let lst = []; // We add possible moves to this array and setDestinationSquares to this at the end
 
+      let lst = []; // We add possible moves to this array and setDestinationSquares to this at the end
       switch (board[x][y]) {
         case `p${color}`: // Pawn moves
           let mod = -turn;
           let startPoint = turn === 1 ? 6 : 1;
           if (canMove(x, y+1*mod) && !board[x][y+1*mod]) lst.push([x, y+1*mod]);
-          if (canMove(x, y+2*mod) && !board[x][y+2*mod] && y === startPoint) lst.push([x, y+2*mod]);
+          if (canMove(x, y+2*mod) && !board[x][y+1*mod] && !board[x][y+2*mod] && y === startPoint) lst.push([x, y+2*mod]);
           if (canMove(x-1, y+1*mod) && board[x-1][y+1*mod]) lst.push([x-1, y+1*mod]);
           if (canMove(x+1, y+1*mod) && board[x+1][y+1*mod]) lst.push([x+1, y+1*mod]);
           if (canMove(x-1, y+1*mod) && x === enPassantSquare?.[0] + 1 && y === enPassantSquare[1]) lst.push([x-1, y+1*mod]);
@@ -621,8 +621,7 @@ export default function Game(props) {
           castle = true;
           editMove("0-0", true);
         }
-      }
-      else if (selectedPiece === `p${color}` && y === (turn === 1 ? 0 : 7)) setPromotingSquare([x, y]); // Checks for promotion
+      } else if (selectedPiece === `p${color}` && y === (turn === 1 ? 0 : 7)) setPromotingSquare([x, y]); // Checks for promotion
       if (kingInCheck(updatedBoard, true)) { // If opposing king is in check...
         checkSfx.play();
         if (!checkmated(updatedBoard)) editMove("+");
