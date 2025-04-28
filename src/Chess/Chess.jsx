@@ -57,6 +57,7 @@ function Chess() {
         {buttonText}
       </Button>
       <Game mode={mode} setMode={setMode} />
+      click on the squares - don't drag!
     </Stack>
   );
 }
