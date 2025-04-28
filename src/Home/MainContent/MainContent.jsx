@@ -1,11 +1,15 @@
-import { Box, Divider, Link, Typography } from "@mui/material";
-import Info from "./Info/Info"
+import { Box, Divider, Link, Stack, Typography } from "@mui/material";
+import Intro from "./Intro";
+import PortFolioCard from "./PortfolioCard";
 import WebsiteList from "./WebsiteList";
 
 export default function MainContent() {
   return (
-    <Box mx={1}>
-      <Info />
+    <Box mt={1} mx={1}>
+      <Stack direction='row' justifyContent='space-between'>
+        <Intro />
+        <PortFolioCard />
+      </Stack>
       <Divider variant="middle" sx={{ marginY: 4 }} />
       <WebsiteList />
       <Divider variant="middle" sx={{ marginY: 4 }} />
