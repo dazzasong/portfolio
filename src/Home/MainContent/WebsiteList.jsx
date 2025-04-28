@@ -2,7 +2,7 @@ import { Card, CardActionArea, CardMedia, Stack, Typography } from "@mui/materia
 
 function WebsiteCard({ img, to, disabled=false }) {
   return (
-    <Card sx={{ opacity: disabled ? 0.6 : 1 }}>
+    <Card sx={{ opacity: disabled ? 0.4 : 1 }}>
       <CardActionArea href={to} disabled={disabled}>
         <CardMedia component="img" image={img} height={200} />
       </CardActionArea>
