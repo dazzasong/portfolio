@@ -601,11 +601,18 @@ export default function Game(props) {
   return (
     <Stack direction="row" sx={{ userSelect: 'none' }}>
       {promotingSquare &&
-        <PromotionCard setBoard={setBoard} promotingSquare={promotingSquare} setPromotingSquare={setPromotingSquare} opposingColor={opposingColor} />
+        <PromotionCard
+          board={board}
+          setBoard={setBoard}
+          promotingSquare={promotingSquare}
+          setPromotingSquare={setPromotingSquare}
+          opposingColor={opposingColor}
+          addPoint={addPoint}
+        />
       }
       <Box>
         <Score whiteWins={whiteWins} blackWins={blackWins} scoreboardAnnouncement={scoreboardAnnouncement} />
-        <Stack direction="row" boxShadow={10}>
+        <Stack direction='row' boxShadow={10}>
           {[...Array(8)].map((_, i) => (
             <ChessColumn
               xAxis={i}
