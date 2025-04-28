@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { Box, IconButton, Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import { Circle, CircleOutlined } from "@mui/icons-material";
-import Score from "./Score";
 import SideBar from "./Sidebar/Sidebar";
+import Score from "./Score";
+import PromotionCard from "./PromotionCard";
 
 const moveSfx = new Audio("chess-assets/sounds/move.mp3");
 const captureSfx = new Audio("chess-assets/sounds/capture.mp3");
@@ -165,55 +166,6 @@ export default function Game(props) {
     }
   };
 
-  function PromotionCard() { // reminder: make this an individual component
-    const promote = (promotionPiece) => {
-      let updatedBoard = board.map(row => [...row]);
-      updatedBoard[promotingSquare[0]][promotingSquare[1]] = `${promotionPiece}${opposingColor}`;
-      setBoard(updatedBoard);
-      setPromotingSquare(null);
-
-      switch (promotionPiece) {
-        case "q":
-          addPoint(0, true, 8);
-          break;
-        case "r":
-          addPoint(0, true, 4);
-          break;
-        case "n":
-        case "b":
-          addPoint(0, true, 2);
-          break;
-        default: throw new Error("Invalid promotionPiece!");
-      }
-
-      promoteSfx.play();
-    };
-
-    const promotionSrc = (piece) => `chess-assets/imgs/${piece}${color}`;
-
-    return (
-      <Stack spacing={2} p={1} border={"solid"} sx={{ backgroundImage: 'linear-gradient(white, grey)' }}>
-        <Typography fontSize={16} fontWeight="bold">
-          Promote to..
-        </Typography>
-        <IconButton onClick={() => promote("q")} disableRipple>
-          <img src={promotionSrc("q")} alt={color ? "Black Queen" : "White Queen"} />
-        </IconButton>
-        -
-        <IconButton onClick={() => promote("r")} disableRipple>
-          <img src={promotionSrc("r")} alt={color ? "Black Rook" : "White Rook"} />
-        </IconButton>
-        -
-        <IconButton onClick={() => promote("n")} disableRipple>
-          <img src={promotionSrc("n")} alt={color ? "Black Knight" : "White Knight"} />
-        </IconButton>
-        -
-        <IconButton onClick={() => promote("b")} disableRipple>
-          <img src={promotionSrc("b")} alt={color ? "Black Bishop" : "White Bishop"} />
-        </IconButton>
-      </Stack>
-    );
-  }
   const clickSquare = (x, y, selected, destinated) => {
     const withinBounds = (x, y) => x >= 0 && x <= 7 && y >= 0 && y <= 7; // Checks if move is within bounds
 
@@ -649,7 +601,9 @@ export default function Game(props) {
 
   return (
     <Stack direction="row" sx={{ userSelect: 'none' }}>
-      {promotingSquare && <PromotionCard />}
+      {promotingSquare &&
+        <PromotionCard />
+      }
       <Box>
         <Score whiteWins={whiteWins} blackWins={blackWins} scoreboardAnnouncement={scoreboardAnnouncement} />
         <Stack direction="row" boxShadow={10}>
