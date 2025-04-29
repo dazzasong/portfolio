@@ -1,6 +1,6 @@
 import { Stack, TextField, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
-import Timer from "./Timer";
+import { useState } from "react";
+import Stats from "./Stats/Stats";
 
 export default function Test({ setState, lives, setLives, playSound }) {
   const [questionNum, setQuestionNum] = useState(0);
@@ -25,7 +25,6 @@ export default function Test({ setState, lives, setLives, playSound }) {
     "I left milk out for 18 days. Can I drink it?",
     "14 + 6 = ?",
     "33 x 3 = ?",
-    "How much does a Big Mac cost at Mcdonald's?",
     "H2O is _____",
     "Sweet + bitter = ?",
     "What is the coldest planet in the Solar System?",
@@ -64,6 +63,9 @@ export default function Test({ setState, lives, setLives, playSound }) {
     "What question number are we up to?",
     "Is 52 an even number?",
     "What coding language did I use to make this website?",
+    "True or false: Declan loves turtles",
+    "True or false: Darren has a brother",
+    "True or false: Pluto is a planet",
     "What is the current year?",
     "What is the current month?",
     "What is the current day of month?",
@@ -71,7 +73,6 @@ export default function Test({ setState, lives, setLives, playSound }) {
     "How many hours has it been since the start of today?",
     "Is it currently AM or PM?",
     "How many minutes has it been since the start of this hour?",
-    "How many seconds has it been since the start of this minute?",
     "Have you completed this test?"
   ];
 
@@ -91,7 +92,6 @@ export default function Test({ setState, lives, setLives, playSound }) {
     "no",
     20,
     99,
-    "$9.75",
     "water",
     "bittersweet",
     "uranus",
@@ -130,6 +130,9 @@ export default function Test({ setState, lives, setLives, playSound }) {
     52,
     "yes",
     "javascript",
+    "true",
+    "true",
+    "false",
     date.getFullYear(),
     months[date.getMonth()],
     date.getDate(),
@@ -137,12 +140,8 @@ export default function Test({ setState, lives, setLives, playSound }) {
     date.getHours(),
     date.getHours() >= 12 ? "pm" : "am",
     date.getMinutes(),
-    date.getSeconds(),
     "yes"
   ];
-  
-  // eslint-disable-next-line
-  useEffect(() => setLives(3), []); // Resets lives on render
 
   const handleEnter = (e) => {
     const value = e.target.value.trim();
@@ -161,19 +160,11 @@ export default function Test({ setState, lives, setLives, playSound }) {
     }
   };
 
-  if (lives <= 0 || questionNum > questions.length) setState(2);
+  if (lives <= 0 || questionNum > questions.length) setState(2); // lives was still 0
 
   return (
     <Stack alignItems='center' spacing={1}>
-      <Stack position='absolute' top={10} left={10} spacing={2}>
-        <Timer setState={setState} />
-        <Stack direction='row' spacing={1}>
-          {Array.from({ length: lives }, (_, i) => (
-            <img src="brainskills-assets/imgs/heart.png" alt="heart" width={32} key={i} />
-          ))}
-        </Stack>
-        <Typography fontSize={24}>Question {questionNum+1}</Typography>
-      </Stack>
+      <Stats setState={setState} lives={lives} questionNum={questionNum} />
       <Typography fontSize={18}>{questions[questionNum]}</Typography>
       <TextField variant="standard" onKeyDown={handleEnter} />
     </Stack>

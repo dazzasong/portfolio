@@ -1,13 +1,18 @@
 import { Button, Stack, Typography } from "@mui/material";
 
-export default function Results({ setState, lives }) {
+export default function Results({ setState, lives, setLives }) {
   const isSuccess = lives > 0;
+
+  const restart = () => {
+    setState(1);
+    setLives(3);
+  };
 
   const result = () => {
     if (lives === 3) return "Big Brain";
     else if (lives === 2) return "Chill Brain";
-    else if (lives === 1) return "Awkward Brain (D-)";
-    else return "Duck Brain (F-)";
+    else if (lives === 1) return "Awkward Brain";
+    else return "Duck Brain";
   };
 
   return (
@@ -18,7 +23,7 @@ export default function Results({ setState, lives }) {
       }
       <Typography fontWeight='bold'>YOU HAVE EARNED THE RESULT OF: {result()}</Typography>
       <Stack direction='row' spacing={1}>
-        <Button variant="outlined" color="warning" onClick={() => setState(1)}>Try again?</Button>
+        <Button variant="outlined" color="warning" onClick={restart}>Try again?</Button>
         <Button variant="contained" color="inherit" onClick={() => setState(0)}>Main Menu</Button>
       </Stack>
     </Stack>
