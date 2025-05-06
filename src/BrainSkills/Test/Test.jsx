@@ -1,10 +1,14 @@
+import { useEffect } from "react";
 import { Stack, TextField, Typography } from "@mui/material";
-import { useState } from "react";
 import Stats from "./Stats/Stats";
 
-export default function Test({ setState, lives, setLives, playSound }) {
-  const [questionNum, setQuestionNum] = useState(0);
-  
+export default function Test({ setState, lives, setLives, questionNum, setQuestionNum, setSave, playSound }) { 
+  useEffect(() => {
+    setQuestionNum(0);
+    setSave(null);
+  // eslint-disable-next-line
+  }, [])
+
   const date = new Date();
   const months = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"];
   const weekdays = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
@@ -160,7 +164,7 @@ export default function Test({ setState, lives, setLives, playSound }) {
     }
   };
 
-  if (lives <= 0 || questionNum > questions.length) setState(2); // lives was still 0
+  if (lives <= 0 || questionNum > questions.length) setState(2);
 
   return (
     <Stack alignItems='center' spacing={1}>

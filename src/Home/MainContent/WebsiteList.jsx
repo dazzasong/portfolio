@@ -12,11 +12,12 @@ function WebsiteCard({ img, to, disabled=false }) {
 
 export default function WebsiteList() {
   const websites = [
-    {img: "icons/snake2.0.png", to: "snake2"},
+    {img: "icons/snake.png", to: "snake2"},
     {img: "icons/chess.png", to: "chess"},
-    {img: "icons/pizza-help.png", to: "pizzahelp", disabled: true},
-    {img: "icons/the-button.png", to: "thebutton", disabled: true},
-    {img: "icons/brain-skills.png", to: "brainskills", disabled: false}
+    {img: "icons/pizzahelp.png", to: "pizzahelp", disabled: true},
+    {img: "icons/thebutton.png", to: "thebutton", disabled: true},
+    {img: "icons/brainskills.png", to: "brainskills", disabled: false},
+    {img: "icons/cookieclicker.png", to: "cookieclicker", disabled: false}
   ];
 
   return (

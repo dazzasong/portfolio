@@ -12,11 +12,14 @@ const playSound = (name) => {
 function BrainSkills() {
   const [state, setState] = useState(0);
   const [lives, setLives] = useState(3);
+  const [questionNum, setQuestionNum] = useState(0);
+
+  const [save, setSave] = useState();
 
   const render = () => {
-    if (state === 0) return <MainMenu setState={setState} playSound={playSound} />;
-    else if (state === 1) return <Test setState={setState} lives={lives} setLives={setLives} playSound={playSound} />;
-    else return <Results setState={setState} lives={lives} setLives={setLives} />
+    if (state === 0) return <MainMenu setState={setState} setLives={setLives} setQuestionNum={setQuestionNum} save={save} playSound={playSound} />;
+    else if (state === 1) return <Test setState={setState} lives={lives} setLives={setLives} questionNum={questionNum} setQuestionNum={setQuestionNum} setSave={setSave} playSound={playSound} />;
+    else return <Results setState={setState} lives={lives} setLives={setLives} questionNum={questionNum} save={save} setSave={setSave} />
   };
 
   return (
