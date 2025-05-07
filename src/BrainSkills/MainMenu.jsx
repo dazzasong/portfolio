@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 
 export default function MainMenu({ setState, setLives, setQuestionNum, save, playSound }) {
@@ -8,20 +8,19 @@ export default function MainMenu({ setState, setLives, setQuestionNum, save, pla
 
   const [attemptsToLeave, setAttemptsToLeave] = useState(0);
 
-  // Reset lives
-  // eslint-disable-next-line
-  useEffect(() => setLives(3), []);
-
   const handleClick = (btn) => {
-    if (btn === 0) setState(1);
-    else if (btn === 1) setLoadMode(true);
+    if (btn === 0) {
+      setState(1);
+      setLives(3);
+      setQuestionNum(0);
+    } else if (btn === 1) setLoadMode(true);
     else if (btn === 2) {
       setAttemptsToLeave((attemptsToLeave) => attemptsToLeave + 1);
       playSound('nope.mp3');
     } else {
-      if (save?.code === saveCode) {
+      if (save === saveCode) {
         setState(1);
-        setQuestionNum(save.questionNum);
+        setLives(1);
       } else setIsError(true);
     }
 

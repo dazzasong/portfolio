@@ -1,6 +1,6 @@
 import { Button, Stack, Typography } from "@mui/material";
 
-export default function Results({ setState, lives, setLives, questionNum, save, setSave }) {
+export default function Results({ setState, lives, setLives, setQuestionNum, save, setSave }) {
   const isSuccess = lives > 0;
 
   const result = () => {
@@ -13,6 +13,7 @@ export default function Results({ setState, lives, setLives, questionNum, save, 
   const restart = () => {
     setState(1);
     setLives(3);
+    setQuestionNum(0);
   };
 
   const generateSave = () => {
@@ -22,7 +23,7 @@ export default function Results({ setState, lives, setLives, questionNum, save, 
       const randomIndex = Math.floor(Math.random() * characters.length);
       code += characters[randomIndex];
     }
-    setSave({code: code, questionNum: questionNum});
+    setSave(code);
   };
 
   return (
@@ -40,7 +41,7 @@ export default function Results({ setState, lives, setLives, questionNum, save, 
         <Button onClick={() => generateSave()}>Get save code?</Button>
       }
       { !isSuccess && save &&
-        <Typography>Loser's code: {save.code}</Typography>
+        <Typography>Loser's code: {save}</Typography>
       }
     </Stack>
   );

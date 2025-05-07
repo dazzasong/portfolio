@@ -7,7 +7,8 @@ export default function Cookie({ setCookies, playSound }) {
   return (
     <img
       src="cookieclicker-assets/cookie.png"
-      alt="cookie"
+      alt="Cookie"
+      draggable={false}
       width={240}
       onClick={handleClick}
       style={{ userSelect: 'none' }}

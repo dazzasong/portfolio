@@ -4,7 +4,6 @@ import Stats from "./Stats/Stats";
 
 export default function Test({ setState, lives, setLives, questionNum, setQuestionNum, setSave, playSound }) { 
   useEffect(() => {
-    setQuestionNum(0);
     setSave(null);
   // eslint-disable-next-line
   }, [])
@@ -62,8 +61,6 @@ export default function Test({ setState, lives, setLives, questionNum, setQuesti
     "What is the name of Mcdonald's official mascot?",
     "I dropped a glass from the top of the Effiel Tower. Will it break?",
     "I dropped a chair from the top of the Effiel Tower. Will it break?",
-    "I dropped a cat from the top of the Effiel Tower. Will it..?",
-    "Assuming it had 9 lives, how many lives does the cat have now?",
     "What question number are we up to?",
     "Is 52 an even number?",
     "What coding language did I use to make this website?",
@@ -129,9 +126,7 @@ export default function Test({ setState, lives, setLives, questionNum, setQuesti
     "ronald mcdonald",
     "yes",
     "yes",
-    "no",
-    8,
-    52,
+    questionNum+1,
     "yes",
     "javascript",
     "true",

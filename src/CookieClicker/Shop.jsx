@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Box, Button, Drawer, IconButton, Stack, Typography } from "@mui/material";
-import { ArrowBack } from "@mui/icons-material";
+import { ArrowBack, ArrowForward } from "@mui/icons-material";
 
 export default function Shop({ cookies, setCookies, setCps, playSound }) {
   const [storeOpen, setStoreOpen] = useState(false);
@@ -11,7 +11,7 @@ export default function Shop({ cookies, setCookies, setCps, playSound }) {
         setCookies(prevCookies => prevCookies - price);
         setCps(prevCps => prevCps + speed);
         playSound('purchase.mp3');
-      } else playSound('poor.mp3');
+      } else playSound('poor.mp3'); // deal with the cookie devil
     };
 
     return (
@@ -34,18 +34,25 @@ export default function Shop({ cookies, setCookies, setCps, playSound }) {
       <Drawer open={storeOpen}>
         <Typography fontSize={20}>The Shop</Typography>
         <Item name="Slave" price={5} speed={0.1} description="A low-economic peasant. Good for farming cookies." />
-        <Item name="Baker" price={10} speed={0.5} description="An Italian cookie baker. Loves cookies." />
+        <Item name="Baker" price={20} speed={0.5} description="An Italian cookie baker. Loves cookies." />
         <Item name="Chef" price={30} speed={1} description="A skillful chef. Cooks well and fast." />
-        <Item name="Mascot" price={50} speed={2} description="Promotes your cookies." />
-        <Item name="Bakery" price={100} speed={4} description="Bakes fresh cookies every day." />
-        <Item name="Cookie Robot" price={175} speed={8} description="Constructs cookies at top speed and precision." />
-        <Item name="Factory" price={250} speed={10} description="Sends out boxes of cookies." />
+        <Item name="Miner" price={50} speed={2} description="Digs for valuable cookies." />
+        <Item name="Bakery" price={120} speed={4} description="Bakes fresh cookies every day." />
+        <Item name="Robot" price={175} speed={6} description="Constructs cookies at top speed and precision." />
+        <Item name="Factory" price={300} speed={10} description="Sends out boxes of cookies." />
+        <Item name="Printer" price={500} speed={20} description="Prints out a variety of cookies." />
+        <Item name="Thief" price={700} speed={30} description="Steals cookies from the elderly." />
+        <Item name="Jacob" price={1000} speed={45} description="Loves to eat and cook cookies." />
+        <Item name="School" price={3000} speed={280} description="Teaches children the value of cookies." />
+        <Item name="Theme Park" price={4000} speed={360} description="Visitors come to bake cookies." />
+        <Item name="Stocks" price={6000} speed={600} description="Invest in cookie stocks." />
+        <Item name="Buy CookieCoin" price={10000} speed={1500} description="Invest in cryptocurrency." />
         <IconButton size="large" onClick={() => setStoreOpen(!storeOpen)} sx={{ position: 'fixed', bottom: 0, left: 0 }}>
           <ArrowBack />
         </IconButton>
       </Drawer>
       <IconButton size="large" onClick={() => setStoreOpen(!storeOpen)} sx={{ position: 'fixed', bottom: 0, left: 0 }}>
-        <ArrowBack />
+        <ArrowForward />
       </IconButton>
     </Box>
   );
