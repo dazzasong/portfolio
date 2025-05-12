@@ -42,7 +42,6 @@ export default function Shop({ cookies, setCookies, setCps, playSound }) {
         <Item name="Factory" price={300} speed={10} description="Sends out boxes of cookies." />
         <Item name="Printer" price={500} speed={20} description="Prints out a variety of cookies." />
         <Item name="Thief" price={700} speed={30} description="Steals cookies from the elderly." />
-        <Item name="Jacob" price={1000} speed={45} description="Loves to eat and cook cookies." />
         <Item name="School" price={3000} speed={280} description="Teaches children the value of cookies." />
         <Item name="Theme Park" price={4000} speed={360} description="Visitors come to bake cookies." />
         <Item name="Stocks" price={6000} speed={600} description="Invest in cookie stocks." />
