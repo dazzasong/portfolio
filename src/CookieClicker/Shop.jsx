@@ -24,7 +24,13 @@ export default function Shop({ cookies, setCookies, setCps, playSound }) {
         <Stack direction='row' alignItems='center' spacing={2}>
           <Stack>
             <Typography>{name}</Typography>
-            <img src={`cookieclicker-assets/shop-imgs/${name}.png`} alt={name} width={64} height={64} />
+            <img
+              src={`cookieclicker-assets/shop-imgs/${name}.png`}
+              alt={name}
+              width={64}
+              height={64}
+              style={{ opacity: cookies < price ? 0.5 : 1 }}
+            />
           </Stack>
           <Typography fontWeight='bold'>{price} cookies</Typography>
           <Typography width={240}>{description}</Typography>
