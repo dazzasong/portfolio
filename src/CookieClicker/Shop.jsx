@@ -41,14 +41,15 @@ export default function Shop({ cookies, setCookies, setCps, playSound }) {
         <Item name="Slave" price={10} speed={0.1} description="A low-economic peasant. Good for farming cookies." />
         <Item name="Grandma" price={40} speed={0.5} description="She loves to bake cookies." />
         <Item name="Chef" price={75} speed={1} description="A skillful chef. Cooks well and fast." />
-        <Item name="Mines" price={120} speed={2} description="Rocks full of valuable cookies." />
-        <Item name="Bakery" price={200} speed={4} description="Bakes fresh cookies every day." />
-        <Item name="Factory" price={400} speed={10} description="Sends out boxes of cookies." />
-        <Item name="Thief" price={900} speed={25} description="Steals cookies from the elderly." />
-        <Item name="School" price={1600} speed={50} description="Teaches children the value of cookies." />
-        <Item name="Theme Park" price={3000} speed={100} description="Visitors come to bake cookies." />
-        <Item name="Stocks" price={7777} speed={250} description="Invest in cookie stocks." />
-        <Item name="CookieCoin" price={15000} speed={500} description="Invest in cookiecurrency." />
+        <Item name="Mines" price={500} speed={10} description="Rocks full of valuable cookies." />
+        <Item name="Bakery" price={2200} speed={50} description="Bakes fresh cookies every day." />
+        <Item name="Thief" price={10000} speed={250} description="Who stole the cookie from the cookie jar?" />
+        <Item name="School" price={40000} speed={1000} description="Teaches children the value of cookies." />
+        <Item name="Factory" price={160000} speed={5000} description="Sends out boxes of cookies." />
+        <Item name="Hacker" price={800000} speed={30000} description="Collects cookies from user's computers" />
+        <Item name="Stocks" price={2400000} speed={100000} description="Invest in cookie stocks." />
+        <Item name="CookieCoin" price={15000000} speed={700000} description="Invest in cookiecurrency." />
+        <Item name="Cookie Monster" price={20000000} speed={1000000} description="ME LOVE COOKIE. NOM NOM NOM." />
         <IconButton size="large" onClick={() => setShopOpen(!shopOpen)} sx={{ position: 'fixed', bottom: 10, left: 10 }}>
           <ArrowBack />
         </IconButton>
