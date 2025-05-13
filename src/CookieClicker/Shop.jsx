@@ -40,7 +40,7 @@ export default function Shop({ cookies, setCookies, setCps, playSound }) {
         <Typography fontSize={20}>The Shop</Typography>
         <Item name="Slave" price={10} speed={0.1} description="A low-economic peasant. Good for farming cookies." />
         <Item name="Grandma" price={40} speed={0.5} description="She loves to bake cookies." />
-        <Item name="Chef" price={75} speed={1} description="A skillful chef. Cooks well and fast." />
+        <Item name="Chef" price={70} speed={1} description="A skillful chef. Cooks well and fast." />
         <Item name="Mines" price={500} speed={10} description="Rocks full of valuable cookies." />
         <Item name="Bakery" price={2200} speed={50} description="Bakes fresh cookies every day." />
         <Item name="Thief" price={10000} speed={250} description="Who stole the cookie from the cookie jar?" />
