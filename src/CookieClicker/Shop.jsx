@@ -15,8 +15,13 @@ export default function Shop({ cookies, setCookies, setCps, playSound }) {
     };
 
     return (
-      <Button color="inherit" disabled={cookies < price} onClick={purchase} sx={{ bgcolor: 'yellow' }}>
-        <Stack direction='row' spacing={2}>
+      <Button
+        color="inherit"
+        disabled={cookies < price}
+        onClick={purchase}
+        sx={{ bgcolor: 'yellow', textTransform: 'none' }}
+      >
+        <Stack direction='row' alignItems='center' spacing={2}>
           <Stack>
             <Typography>{name}</Typography>
             <img src={`cookieclicker-assets/shop-imgs/${name}.png`} alt={name} width={64} height={64} />
@@ -33,19 +38,17 @@ export default function Shop({ cookies, setCookies, setCps, playSound }) {
     <Box>
       <Drawer open={shopOpen}>
         <Typography fontSize={20}>The Shop</Typography>
-        <Item name="Slave" price={5} speed={0.1} description="A low-economic peasant. Good for farming cookies." />
-        <Item name="Grandma" price={15} speed={0.5} description="She loves to bake cookies." />
-        <Item name="Chef" price={30} speed={1} description="A skillful chef. Cooks well and fast." />
-        <Item name="Mines" price={50} speed={2} description="Rocks full of valuable cookies." />
-        <Item name="Bakery" price={120} speed={4} description="Bakes fresh cookies every day." />
-        <Item name="Robot" price={175} speed={6} description="Constructs cookies at top speed and precision." />
-        <Item name="Factory" price={300} speed={10} description="Sends out boxes of cookies." />
-        <Item name="Printer" price={500} speed={20} description="Prints out a variety of cookies." />
-        <Item name="Thief" price={700} speed={30} description="Steals cookies from the elderly." />
-        <Item name="School" price={3000} speed={280} description="Teaches children the value of cookies." />
-        <Item name="Theme Park" price={4000} speed={360} description="Visitors come to bake cookies." />
-        <Item name="Stocks" price={6000} speed={600} description="Invest in cookie stocks." />
-        <Item name="CookieCoin" price={10000} speed={1500} description="Invest in cryptocurrency." />
+        <Item name="Slave" price={10} speed={0.1} description="A low-economic peasant. Good for farming cookies." />
+        <Item name="Grandma" price={40} speed={0.5} description="She loves to bake cookies." />
+        <Item name="Chef" price={75} speed={1} description="A skillful chef. Cooks well and fast." />
+        <Item name="Mines" price={120} speed={2} description="Rocks full of valuable cookies." />
+        <Item name="Bakery" price={200} speed={4} description="Bakes fresh cookies every day." />
+        <Item name="Factory" price={400} speed={10} description="Sends out boxes of cookies." />
+        <Item name="Thief" price={900} speed={25} description="Steals cookies from the elderly." />
+        <Item name="School" price={1600} speed={50} description="Teaches children the value of cookies." />
+        <Item name="Theme Park" price={3000} speed={100} description="Visitors come to bake cookies." />
+        <Item name="Stocks" price={7777} speed={250} description="Invest in cookie stocks." />
+        <Item name="CookieCoin" price={15000} speed={500} description="Invest in cookiecurrency." />
         <IconButton size="large" onClick={() => setShopOpen(!shopOpen)} sx={{ position: 'fixed', bottom: 10, left: 10 }}>
           <ArrowBack />
         </IconButton>
