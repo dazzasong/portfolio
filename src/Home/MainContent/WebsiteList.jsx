@@ -26,6 +26,7 @@ export default function WebsiteList() {
     <Stack direction="row" spacing={2}>
       {websites.map((web) => <WebsiteCard img={web.img} to={web.to} disabled={web.disabled} />)}
     </Stack>
+    <Typography fontWeight='bold'>Make sure to check in regularly for new updates!</Typography>
     <Typography>Disabled games are still in development</Typography>
   </Stack>
   );
