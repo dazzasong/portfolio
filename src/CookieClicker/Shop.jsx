@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, Button, Drawer, IconButton, Stack, Typography } from "@mui/material";
+import { Box, Button, ButtonGroup, Drawer, IconButton, Stack, Tab, Tabs, Typography } from "@mui/material";
 import { ArrowBack, Store } from "@mui/icons-material";
 
 export default function Shop({ cookies, setCookies, setCps, playSound }) {
@@ -44,18 +44,24 @@ export default function Shop({ cookies, setCookies, setCps, playSound }) {
     <Box>
       <Drawer open={shopOpen}>
         <Typography fontSize={20}>The Shop</Typography>
-        <Item name="Slave" price={10} speed={0.1} description="A low-economic peasant. Good for farming cookies." />
-        <Item name="Grandma" price={40} speed={0.5} description="She loves to bake cookies." />
-        <Item name="Chef" price={70} speed={1} description="A skillful chef. Cooks well and fast." />
-        <Item name="Mines" price={500} speed={10} description="Rocks full of valuable cookies." />
-        <Item name="Bakery" price={2300} speed={50} description="Bakes fresh cookies every day." />
-        <Item name="Thief" price={10000} speed={250} description="Who stole the cookie from the cookie jar?" />
-        <Item name="School" price={40000} speed={1000} description="Teaches children the value of cookies." />
-        <Item name="Factory" price={160000} speed={5000} description="Sends out boxes of cookies." />
-        <Item name="Hacker" price={800000} speed={30000} description="Collects cookies from user's computers" />
-        <Item name="Stocks" price={2400000} speed={100000} description="Invest in cookie stocks." />
-        <Item name="CookieCoin" price={15000000} speed={700000} description="Invest in cookiecurrency." />
-        <Item name="Cookie Monster" price={20000000} speed={1000000} description="ME LOVE COOKIE. NOM NOM NOM." />
+        <Tabs>
+          <Tab label='Items' />
+          <Tab label='Upgrades' />
+        </Tabs>
+        <ButtonGroup orientation="vertical">
+          <Item name="Slave" price={10} speed={0.1} description="A low-economic peasant. Good for farming cookies." />
+          <Item name="Grandma" price={40} speed={0.5} description="She loves to bake cookies." />
+          <Item name="Chef" price={70} speed={1} description="A skillful chef. Cooks well and fast." />
+          <Item name="Mines" price={500} speed={10} description="Rocks full of valuable cookies." />
+          <Item name="Bakery" price={2300} speed={50} description="Bakes fresh cookies every day." />
+          <Item name="Thief" price={10000} speed={250} description="Who stole the cookie from the cookie jar?" />
+          <Item name="School" price={40000} speed={1000} description="Teaches children the value of cookies." />
+          <Item name="Factory" price={160000} speed={5000} description="Sends out boxes of cookies." />
+          <Item name="Hacker" price={800000} speed={30000} description="Collects cookies from user's computers" />
+          <Item name="Stocks" price={2400000} speed={100000} description="Invest in cookie stocks." />
+          <Item name="CookieCoin" price={15000000} speed={700000} description="Invest in cookiecurrency." />
+          <Item name="Cookie Monster" price={20000000} speed={1000000} description="ME LOVE COOKIE. NOM NOM NOM." />
+        </ButtonGroup>
         <IconButton size="large" onClick={() => setShopOpen(!shopOpen)} sx={{ position: 'fixed', bottom: 10, left: 10 }}>
           <ArrowBack />
         </IconButton>

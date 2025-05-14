@@ -48,7 +48,7 @@ function Snake2() {
         fontFamily="pixelify sans"
         sx={{ userSelect: "none" }}
       >
-        SNAKE 2.0
+        SNAKE 2.0 (apologies for bugs, working on that)
       </Typography>
       <Stack
         direction="row"
