@@ -15,9 +15,9 @@ export default function WebsiteList() {
     {img: "icons/snake.png", to: "snake2"},
     {img: "icons/chess.png", to: "chess"},
     {img: "icons/pizzahelp.png", to: "pizzahelp", disabled: true},
-    {img: "icons/thebutton.png", to: "thebutton", disabled: true},
     {img: "icons/brainskills.png", to: "brainskills", disabled: false},
-    {img: "icons/cookieclicker.png", to: "cookieclicker", disabled: false}
+    {img: "icons/cookieclicker.png", to: "cookieclicker", disabled: false},
+    {img: "icons/bulletsong.png", to: "bulletsong", disabled: true}
   ];
 
   return (

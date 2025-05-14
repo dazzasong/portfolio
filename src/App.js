@@ -6,7 +6,6 @@ import Chess from "./Chess/Chess";
 import PizzaHelp from "./PizzaHelp/PizzaHelp";
 import LevelSelection from "./PizzaHelp/LevelSelection";
 import Settings from "./PizzaHelp/Settings";
-import TheButton from "./TheButton/TheButton";
 import BrainSkills from "./BrainSkills/BrainSkills";
 import CookieClicker from "./CookieClicker/CookieClicker";
 
@@ -20,7 +19,6 @@ function App() {
         <Route path="pizzahelp" element={<PizzaHelp />} />
         <Route path="pizzahelp/levelselection" element={<LevelSelection />} />
         <Route path="pizzahelp/settings" element={<Settings />} />
-        <Route path="thebutton" element={<TheButton />} />
         <Route path="brainskills" element={<BrainSkills />} />
         <Route path="cookieclicker" element={<CookieClicker />} />
         <Route path="*" element={<NoPage />} />
