@@ -5,7 +5,7 @@ import { ArrowBack, Store } from "@mui/icons-material";
 export default function Shop({ cookies, setCookies, setCps, shortenNum, playSound }) {
   const [shopOpen, setShopOpen] = useState(false);
 
-  function Item({ name='', price=0, speed=0, description='' }) {
+  function Item({ name='', price=0, speed=0, description='', unlocked=false, hidden=true }) {
     const purchase = () => {
       if (cookies >= price) {
         setCookies(prevCookies => prevCookies - price);
