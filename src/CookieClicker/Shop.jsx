@@ -54,13 +54,14 @@ export default function Shop({ cookies, setCookies, setCps, shortenNum, playSoun
           <Item name="Chef" price={1100} speed={8} description="A skillful chef. Cooks well and fast." />
           <Item name="Mines" price={12000} speed={47} description="Rocks full of valuable cookies." />
           <Item name="Bakery" price={130000} speed={260} description="Bakes fresh cookies every day." />
-          <Item name="Thief" price={1400000} speed={1400} description="Who stole the cookie from the cookie jar?" />
-          <Item name="School" price={20000000} speed={7800} description="Teaches children the value of cookies." />
-          <Item name="Factory" price={3300000000} speed={44000} description="Sends out boxes of cookies." />
-          <Item name="Hacker" price={5100000000} speed={260000} description="Collects cookies from user's computers" />
-          <Item name="Stocks" price={75000000000} speed={1600000} description="Invest in cookie stocks." />
+          <Item name="School" price={1400000} speed={1400} description="Teaches children the value of cookies." />
+          <Item name="Factory" price={20000000} speed={7800} description="Sends out boxes of cookies." />
+          <Item name="Thief" price={3300000000} speed={44000} description="Who stole the cookie from the cookie jar?" />
+          <Item name="Bank" price={5100000000} speed={260000} description="Stores all the cookies." />
+          <Item name="Hacker" price={75000000000} speed={1600000} description="Collects cookies from user's computers" />
           <Item name="CookieCoin" price={1000000000000} speed={10000000} description="Invest in cookiecurrency." />
-          <Item name="Cookie Monster" price={14000000000000} speed={65000000} description="ME LOVE COOKIE. NOM NOM NOM." />
+          <Item name="Jesus Christ" price={14000000000000} speed={65000000} description="Holy shit it's Jesus Christ. Summons cookies for you, if you pray." />
+          <Item name="Cookie Monster" price={170000000000000} speed={430000000} description="ME LOVE COOKIE. NOM NOM NOM." />
         </ButtonGroup>
         <IconButton size="large" onClick={() => setShopOpen(!shopOpen)} sx={{ position: 'fixed', bottom: 10, left: 10 }}>
           <ArrowBack />
