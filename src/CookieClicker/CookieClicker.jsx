@@ -12,6 +12,7 @@ const playSound = (name) => {
 function CookieClicker() {
   const [cookies, setCookies] = useState(0);
   const [cps, setCps] = useState(0);
+  const [cookiesPerClick, setCookiesPerClick] = useState(1);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -31,8 +32,8 @@ function CookieClicker() {
   return (
     <Stack justifyContent='center' alignItems='center' height='100vh'>
       <Stats cookies={cookies} cps={cps} shortenNum={shortenNum} />
-      <Shop cookies={cookies} setCookies={setCookies} setCps={setCps} shortenNum={shortenNum} playSound={playSound} />
-      <Cookie setCookies={setCookies} playSound={playSound} />
+      <Shop cookies={cookies} setCookies={setCookies} setCookiesPerClick={setCookiesPerClick} setCps={setCps} shortenNum={shortenNum} playSound={playSound} />
+      <Cookie setCookies={setCookies} cookiesPerClick={cookiesPerClick} playSound={playSound} />
     </Stack>
   );
 }

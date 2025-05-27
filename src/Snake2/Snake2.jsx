@@ -83,9 +83,25 @@ function Snake2() {
           <Typography fontSize={24} fontFamily="pixelify sans">Settings</Typography>
         </Button>
       </Stack>
-      <Game state={gameState} setState={setGameState} isMuted={isMuted} isGridEnabled={isGridEnabled} borderColor={borderColor} playSound={playSound} />
-      { settingsWindowOpen &&
-        <Settings setSettingsWindowOpen={setSettingsWindowOpen} isMuted={isMuted} setIsMuted={setIsMuted} isGridEnabled={isGridEnabled} setIsGridEnabled={setIsGridEnabled} borderColor={borderColor} setBorderColor={setBorderColor} playSound={playSound} />
+      <Game
+        state={gameState}
+        setState={setGameState}
+        isMuted={isMuted}
+        isGridEnabled={isGridEnabled}
+        borderColor={borderColor}
+        playSound={playSound}
+      />
+      {settingsWindowOpen &&
+        <Settings
+          setSettingsWindowOpen={setSettingsWindowOpen}
+          isMuted={isMuted}
+          setIsMuted={setIsMuted}
+          isGridEnabled={isGridEnabled}
+          setIsGridEnabled={setIsGridEnabled}
+          borderColor={borderColor}
+          setBorderColor={setBorderColor}
+          playSound={playSound}
+        />
       }
     </Stack>
   );

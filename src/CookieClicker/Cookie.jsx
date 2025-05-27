@@ -1,6 +1,6 @@
-export default function Cookie({ setCookies, playSound }) {
+export default function Cookie({ setCookies, cookiesPerClick, playSound }) {
   const handleClick = () => {
-    setCookies(prevCookies => prevCookies + 1);
+    setCookies(prevCookies => prevCookies + cookiesPerClick);
     playSound('click.mp3');
   };
 
