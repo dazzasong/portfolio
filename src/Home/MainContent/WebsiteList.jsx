@@ -4,7 +4,7 @@ function WebsiteCard({ img, to, disabled=false }) {
   return (
     <Card sx={{ opacity: disabled ? 0.4 : 1 }}>
       <CardActionArea href={to} disabled={disabled}>
-        <CardMedia component="img" image={img} height={200} />
+        <CardMedia component="img" image={`icons/${img}`} height={200} />
       </CardActionArea>
     </Card>
   )
@@ -12,12 +12,12 @@ function WebsiteCard({ img, to, disabled=false }) {
 
 export default function WebsiteList() {
   const websites = [
-    {img: "icons/snake.png", to: "snake2"},
-    {img: "icons/chess.png", to: "chess"},
-    {img: "icons/brainskills.png", to: "brainskills"},
-    {img: "icons/cookieclicker.png", to: "cookieclicker"},
-    {img: "icons/bulletsong.png", to: "bulletsong", disabled: true},
-    {img: "icons/gunspin.png", to: "gunspin", disabled: true}
+    {img: "snake.png", to: "snake2"},
+    {img: "chess.png", to: "chess"},
+    {img: "brainskills.png", to: "brainskills"},
+    {img: "cookieclicker.png", to: "cookieclicker"},
+    {img: "bulletsong.png", to: "bulletsong", disabled: true},
+    {img: "gunspin.png", to: "gunspin", disabled: true}
   ];
 
   return (
