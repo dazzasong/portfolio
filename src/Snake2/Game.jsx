@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Box, Stack, Typography } from "@mui/material";
 
 function Square({ filled=false, isGridEnabled, isFood }) {
   return (
     <Box width={16} height={16} bgcolor={filled ? "white" : "black"} border={isGridEnabled ? 1 : 0}>
-      { isFood &&
+      {isFood &&
         <Box position="absolute">
           <img src="snake2-assets/imgs/berry.png" alt="berry" width={24} />
         </Box>
@@ -65,7 +65,9 @@ function Game({ state, setState, isMuted, isGridEnabled, borderColor, playSound 
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
 
-  const [direction, setDirection] = useState(0);
+  const [direction, setDirection] = useState(0); // Actual direction
+  const [nextDirection, setNextDirection] = useState(0); // Queued input
+
   const [snakeSquares, setSnakeSquares] = useState([]);
   const [foodPosition, setFoodPosition] = useState([]);
 
@@ -98,40 +100,41 @@ function Game({ state, setState, isMuted, isGridEnabled, borderColor, playSound 
       setDirection(0);
       setSnakeSquares([]);
       setFoodPosition([]);
-      playSound("snake2-assets/sounds/game-over.mp3", isMuted);
+      playSound('game-over.mp3', isMuted);
     }
   // eslint-disable-next-line
   }, [state]);
+
+  const handleKeyDown = (e) => {
+    switch (e.key) {
+      case "ArrowUp":
+      case "w":
+        if (direction !== 3) setNextDirection(1); // Checks for opposite direction
+        break;
+      case "ArrowLeft":
+      case "a":
+        if (direction !== 4) setNextDirection(2);
+        break;
+      case "ArrowDown":
+      case "s":
+        if (direction !== 1) setNextDirection(3);
+        break;
+      case "ArrowRight":
+      case "d":
+        if (direction !== 2) setNextDirection(4);
+        break;
+      default:
+        break;
+    }
+  };
 
   // Set direction based on user inputs
   useEffect(() => {
     if (state !== 1 || snakeSquares.length === 0) return; // Only run when game starts
 
-    const handleKeyDown = (e) => {
-      switch (e.key) {
-        case "ArrowUp":
-        case "w":
-          if (direction !== 3) setDirection(1); // Checks for opposite direction
-          break;
-        case "ArrowLeft":
-        case "a":
-          if (direction !== 4) setDirection(2);
-          break;
-        case "ArrowDown":
-        case "s":
-          if (direction !== 1) setDirection(3);
-          break;
-        case "ArrowRight":
-        case "d":
-          if (direction !== 2) setDirection(4);
-          break;
-        default:
-          // do nothing
-      }
-    };
-
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
+  // eslint-disable-next-line
   }, [state, direction, snakeSquares]);
 
   // Updates snakeSquares per frame
@@ -139,50 +142,51 @@ function Game({ state, setState, isMuted, isGridEnabled, borderColor, playSound 
     if (state !== 1 || snakeSquares.length === 0) return; // Only run during game
 
     const interval = setInterval(() => {
-      setSnakeSquares((prevPlayerSquares) => {
-        let newPlayerSquares = [...prevPlayerSquares];
-        let newPlayerHead = [...newPlayerSquares[0]]; // Create a copy of the head
+      setDirection(nextDirection);
+      setSnakeSquares(prevSnakeSquares => {
+        let newSnakeSquares = [...prevSnakeSquares];
+        let newSnakeHead = [...newSnakeSquares[0]]; // Create a copy of the head
         switch (direction) {
-          case 1: newPlayerHead[1]--; break; // Up
-          case 2: newPlayerHead[0]--; break; // Left
-          case 3: newPlayerHead[1]++; break; // Down
-          case 4: newPlayerHead[0]++; break; // Right
-          default: return prevPlayerSquares;
+          case 1: newSnakeHead[1]--; break; // Up
+          case 2: newSnakeHead[0]--; break; // Left
+          case 3: newSnakeHead[1]++; break; // Down
+          case 4: newSnakeHead[0]++; break; // Right
+          default: return prevSnakeSquares;
         }
-        newPlayerSquares.unshift(newPlayerHead); // Adds new playerHead to start
+        newSnakeSquares.unshift(newSnakeHead); // Adds new playerHead to start
 
         // Unless food is consumed, remove the end of snakeSquares
-        if (newPlayerHead[0] === foodPosition[0] && newPlayerHead[1] === foodPosition[1]) {
+        if (newSnakeHead[0] === foodPosition[0] && newSnakeHead[1] === foodPosition[1]) {
           setScore((prevScore) => prevScore + 1);
           setFoodPosition(randomPosition);
-          playSound("snake2-assets/sounds/eat.mp3", isMuted);
-        } else newPlayerSquares.pop();
+          playSound('eat.mp3', isMuted);
+        } else newSnakeSquares.pop();
 
         // If snake goes out of bounds or hits itself, game over
-        if (newPlayerHead[0] < 0 ||
-            newPlayerHead[0] > 24 ||
-            newPlayerHead[1] < 0 ||
-            newPlayerHead[1] > 24 ||
-            prevPlayerSquares.some((pos) => Array.isArray(pos) && pos.length === newPlayerHead.length && pos.every((val, index) => val === newPlayerHead[index]))
+        if (newSnakeHead[0] < 0 ||
+            newSnakeHead[0] > 24 ||
+            newSnakeHead[1] < 0 ||
+            newSnakeHead[1] > 24 ||
+            prevSnakeSquares.some(pos => Array.isArray(pos) && pos.length === newSnakeHead.length && pos.every((val, index) => val === newSnakeHead[index]))
         ) {
           setState(2);
-          return prevPlayerSquares;
+          return prevSnakeSquares;
         }
 
-        return newPlayerSquares;
+        return newSnakeSquares;
       });
     }, 75);
   
     return () => clearInterval(interval);
     // eslint-disable-next-line
-  }, [state, direction, snakeSquares, foodPosition]);
+  }, [state, direction, nextDirection, snakeSquares, foodPosition]);
 
   // Update the grid based on new snakeSquares
   useEffect(() => {
     if (state !== 1 || snakeSquares.length === 0) return; // Only run during game
 
     setGrid((prevGrid) => {
-      const updatedGrid = prevGrid.map((column) => column.map(() => 0)); // Reset grid  
+      const updatedGrid = prevGrid.map(column => column.map(() => 0)); // Reset grid  
       for (let i = 0; i < snakeSquares.length; i++) {
         const [x, y] = snakeSquares[i];
         updatedGrid[x][y] = 1;

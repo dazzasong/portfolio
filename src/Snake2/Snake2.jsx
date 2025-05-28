@@ -5,7 +5,7 @@ import Settings from "./Settings";
 
 const playSound = (path, muted=false) => {
   if (muted) return;
-  const audio = new Audio(path);
+  const audio = new Audio(`snake2-assets/sounds/${path}`);
   audio.play();
 };
 
@@ -48,7 +48,7 @@ function Snake2() {
         fontFamily="pixelify sans"
         sx={{ userSelect: "none" }}
       >
-        SNAKE 2.0 (apologies for bugs, working on that)
+        SNAKE 2.0
       </Typography>
       <Stack
         direction="row"
@@ -65,7 +65,7 @@ function Snake2() {
           disableRipple
           onClick={() => {
             handleGameState();
-            playSound("snake2-assets/sounds/button-click.mp3", isMuted);
+            playSound('button-click.mp3', isMuted);
           }}
         >
           <Typography fontSize={24} fontFamily="pixelify sans">{buttonText}</Typography>
@@ -77,7 +77,7 @@ function Snake2() {
           disableRipple
           onClick={() => {
             setSettingsWindowOpen(!settingsWindowOpen);
-            playSound("snake2-assets/sounds/button-click.mp3", isMuted);
+            playSound('button-click.mp3', isMuted);
           }}
         >
           <Typography fontSize={24} fontFamily="pixelify sans">Settings</Typography>

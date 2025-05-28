@@ -18,7 +18,7 @@ function Settings({ setSettingsWindowOpen, isMuted, setIsMuted, isGridEnabled, s
           size="small"
           onClick={() => {
             setSettingsWindowOpen(false);
-            playSound("snake2-assets/sounds/button-click.mp3", isMuted);
+            playSound('button-click.mp3', isMuted);
           }}
         >
           <Close />
