@@ -6,6 +6,8 @@ export default function Shop({ cookies, setCookies, setCps, setCpc, shortenNum, 
   const [shopOpen, setShopOpen] = useState(false);
   const [tab, setTab] = useState(0);
 
+
+  // REMINDER: Incorporate this purchase functions into the Building and Upgrade components
   const purchaseBuilding = (cost=0, cps=0) => {
     setCookies(prevCookies => prevCookies - cost);
     setCps(prevCps => prevCps + cps);
@@ -19,12 +21,13 @@ export default function Shop({ cookies, setCookies, setCps, setCpc, shortenNum, 
   };
 
   function Building({ name='', price=0, cps=0, description='' }) {
+    const affordable = cookies >= price;
     const unlocked = true;
 
     return (
       <Button
         color="inherit"
-        disabled={cookies < price}
+        disabled={!affordable}
         onClick={() => purchaseBuilding(price, cps)}
         sx={{ bgcolor: 'yellow', textTransform: 'none' }}
       >
@@ -37,7 +40,7 @@ export default function Shop({ cookies, setCookies, setCps, setCpc, shortenNum, 
                 alt={name}
                 width={64}
                 height={64}
-                style={{ opacity: cookies < price ? 0.5 : 1 }}
+                style={{ opacity: !affordable ? 0.5 : 1 }}
               />
             }
           </Stack>
@@ -49,13 +52,14 @@ export default function Shop({ cookies, setCookies, setCps, setCpc, shortenNum, 
     );
   }
 
-  function Upgrade({ name='', price=0, description='', func }) {  
+  function Upgrade({ name='', price=0, description='', func }) {
+    const affordable = cookies >= price;
     // let purchased = false;
 
     return (
       <Button
         color="inherit"
-        disabled={cookies < price}
+        disabled={!affordable}
         onClick={() => {
           purchaseUpgrade(price, func);
         }}
@@ -67,7 +71,7 @@ export default function Shop({ cookies, setCookies, setCps, setCpc, shortenNum, 
             alt={name}
             width={64}
             height={64}
-            style={{ opacity: cookies < price ? 0.5 : 1 }}
+            style={{ opacity: !affordable ? 0.5 : 1 }}
           />
           <Typography>{name}</Typography>
           <Typography fontWeight='bold'>{shortenNum(price)} cookies</Typography>
