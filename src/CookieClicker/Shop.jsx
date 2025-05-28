@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Box, Button, ButtonGroup, Drawer, IconButton, Stack, Tab, Tabs, Typography } from "@mui/material";
 import { ArrowBack, Store } from "@mui/icons-material";
 
-export default function Shop({ cookies, setCookies, setCps, setCookiesPerClick, shortenNum, playSound }) {
+export default function Shop({ cookies, setCookies, setCps, setCpc, shortenNum, playSound }) {
   const [shopOpen, setShopOpen] = useState(false);
   const [tab, setTab] = useState(0);
 
@@ -19,8 +19,7 @@ export default function Shop({ cookies, setCookies, setCps, setCookiesPerClick, 
   };
 
   function Building({ name='', price=0, cps=0, description='' }) {
-    let unlocked = true;
-    // let hidden = true;
+    const unlocked = true;
 
     return (
       <Button
@@ -104,7 +103,7 @@ export default function Shop({ cookies, setCookies, setCps, setCookiesPerClick, 
           </ButtonGroup>
           :
           <ButtonGroup orientation="vertical">
-            <Upgrade name="Double click" price={100000} description="You get double the cookies for a click." func={() => setCookiesPerClick(2)} />
+            <Upgrade name="Double click" price={100000} description="You get double the cookies for a click." func={() => setCpc(2)} />
           </ButtonGroup>
         }
         <IconButton size="large" onClick={() => setShopOpen(!shopOpen)} sx={{ position: 'fixed', bottom: 10, left: 10 }}>

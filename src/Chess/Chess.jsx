@@ -37,7 +37,7 @@ function Chess() {
   };
 
   return (
-    <Stack alignItems='center' bgcolor='bisque' minHeight='100svh'>
+    <Stack alignItems='center'>
       <Button
         onClick={handleClick}
         variant="contained"
