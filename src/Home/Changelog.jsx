@@ -11,7 +11,7 @@ function PatchNotes({ children, date='' }) {
 }
 
 // Update this as more news comes out
-export default function News() {
+export default function Changelog() {
   return (
     <Box>
       <PatchNotes date="27/05/2025">
@@ -21,7 +21,7 @@ export default function News() {
       <PatchNotes date="28/05/2025">
         <Typography>- Added animation to cookie (Cookie Clicker)</Typography>
         <Typography>- Fixed bug (Snake 2)</Typography>
-        <Typography>- Removed background (chess)</Typography>
+        <Typography>- Removed background (Chess)</Typography>
       </PatchNotes>
       <Link to='/'>Back to Home</Link>
     </Box>
