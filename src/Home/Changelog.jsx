@@ -16,7 +16,6 @@ export default function Changelog() {
     <Box>
       <PatchNotes date="27/05/2025">
         <Typography>- Added double click upgrade (Cookie Clicker)</Typography>
-        <Typography>- GunSpin in development</Typography>
       </PatchNotes>
       <PatchNotes date="28/05/2025">
         <Typography>- Added animation to cookie (Cookie Clicker)</Typography>
