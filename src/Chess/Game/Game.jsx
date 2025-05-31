@@ -14,9 +14,9 @@ function ChessSquare({ x, y, piece, selected, destinated, clickSquare }) {
   const shaded = (x + y) % 2 === 0;
   let bgcolor;
 
-  if (shaded) bgcolor = "#b58863";
-  else bgcolor = "#f0d9B5";
-  if (selected) bgcolor = "#ffff77";
+  if (shaded) bgcolor = '#b58863';
+  else bgcolor = '#f0d9B5';
+  if (selected) bgcolor = '#ffff77';
 
   return (
     <div onClick={() => clickSquare(x, y, selected, destinated)}>
@@ -24,13 +24,13 @@ function ChessSquare({ x, y, piece, selected, destinated, clickSquare }) {
         width={64}
         height={64}
         bgcolor={bgcolor}
-        justifyContent="center"
-        position="relative"
+        justifyContent='center'
+        position='relative'
         p={0.2}
       >
         <Typography fontWeight="bold" top={0} left={3}
           sx={{
-            position: "absolute"
+            position: 'absolute'
           }}
         >
           {x === 0 ? y + 1 : null}
@@ -39,17 +39,17 @@ function ChessSquare({ x, y, piece, selected, destinated, clickSquare }) {
           <Stack
             sx={{
               mr: 0.5,
-              justifyContent: "center", alignItems: "center",
+              justifyContent: 'center', alignItems: 'center',
             }}
           >
             <img src={`chess-assets/imgs/${piece}.png`} alt={piece} />
           </Stack>
         }
-        {destinated && !piece && <Circle sx={{opacity: 0.2, alignSelf: "center"}} />}
-        {destinated && piece && <CircleOutlined sx={{fontSize: 72, opacity: 0.2, alignSelf: "center",  position: "absolute"}} />}
-        <Typography fontWeight="bold" bottom={0} right={2}
+        {destinated && !piece && <Circle sx={{ opacity: 0.2, alignSelf: 'center' }} />}
+        {destinated && piece && <CircleOutlined sx={{ fontSize: 72, opacity: 0.2, alignSelf: 'center',  position: 'absolute' }} />}
+        <Typography fontWeight='bold' bottom={0} right={2}
           sx={{
-            position: "absolute"
+            position: 'absolute'
           }}
         >
           {y === 0 ? String.fromCharCode(x + 97) : null}

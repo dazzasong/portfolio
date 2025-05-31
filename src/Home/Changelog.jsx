@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function PatchNotes({ children, date='' }) {
   return (
-    <Box margin={2}>
+    <Box marginY={2}>
       <Typography fontWeight='bold'><u>Patch notes {date}</u></Typography>
       {children}
     </Box>
@@ -13,14 +13,17 @@ function PatchNotes({ children, date='' }) {
 // Update this as more news comes out
 export default function Changelog() {
   return (
-    <Box>
+    <Box m={2}>
       <PatchNotes date="27/05/2025">
-        <Typography>- Added double click upgrade (Cookie Clicker)</Typography>
+        <Typography>- New double click upgrade (Cookie Clicker)</Typography>
       </PatchNotes>
       <PatchNotes date="28/05/2025">
-        <Typography>- Added animation to cookie (Cookie Clicker)</Typography>
-        <Typography>- Fixed bug (Snake 2)</Typography>
-        <Typography>- Removed background (Chess)</Typography>
+        <Typography>- Added minor cookie animation (Cookie Clicker)</Typography>
+        <Typography>- Fixed bug that causes game over when turning quickly (Snake 2)</Typography>
+        <Typography>- Changed background colour (Chess)</Typography>
+      </PatchNotes>
+      <PatchNotes date="31/05/2025">
+        <Typography>- New Chess logo</Typography>
       </PatchNotes>
       <Link to='/'>Back to Home</Link>
     </Box>

@@ -10,7 +10,7 @@ export default function Intro() {
       <Typography variant="h6" fontStyle='italic'>Why?</Typography>
       <Typography>I was bored.</Typography>
       <Typography variant="h6" fontStyle='italic'>What do I use?</Typography>
-      <Typography>The languages I use are Python, Javascript, and C#. The games below were made using Javascript.</Typography>
+      <Typography>The languages I use are Python, Javascript, and C#. The games below were made using Javascript and C#.</Typography>
       <Box mt={2}>
         <audio controls>
           <source src="intro.mp3" type="audio/mpeg" />
