@@ -26,7 +26,7 @@ export default function Changelog() {
         <Typography>- New Chess logo</Typography>
       </PatchNotes>
       <PatchNotes date="1/06/2025">
-        <Typography>- New website icon</Typography>
+        <Typography>- New disguised website icon and title</Typography>
       </PatchNotes>
       <Link to='/'>Back to Home</Link>
     </Box>
