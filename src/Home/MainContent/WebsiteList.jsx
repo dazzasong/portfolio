@@ -1,12 +1,15 @@
 import { Card, CardActionArea, CardMedia, Stack, Typography } from "@mui/material";
+import { motion } from "motion/react";
 
 function WebsiteCard({ img, to, disabled=false }) {
   return (
-    <Card sx={{ opacity: disabled ? 0.4 : 1 }}>
-      <CardActionArea href={to} disabled={disabled}>
-        <CardMedia component="img" image={`icons/${img}`} height={200} />
-      </CardActionArea>
-    </Card>
+    <motion.div whileHover={{ scale: 1.2 }}>
+      <Card sx={{ opacity: disabled ? 0.4 : 1 }}>
+        <CardActionArea href={to} disabled={disabled}>
+          <CardMedia component="img" image={`icons/${img}`} height={200} />
+        </CardActionArea>
+      </Card>
+    </motion.div>
   )
 }
 
