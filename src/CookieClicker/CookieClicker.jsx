@@ -15,9 +15,7 @@ function CookieClicker() {
   const [cps, setCps] = useState(0);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCookies(prevCookies => prevCookies + cps);
-    }, 1000);
+    const interval = setInterval(() => setCookies(prevCookies => prevCookies + cps), 1000);
     return () => clearInterval(interval)
   }, [cps]);
 
