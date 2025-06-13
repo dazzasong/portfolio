@@ -10,7 +10,7 @@ function PatchNotes({ children, date='' }) {
   );
 }
 
-// Update this as more news comes out
+// Update this as new stuff are added
 export default function Changelog() {
   return (
     <Box m={2}>
